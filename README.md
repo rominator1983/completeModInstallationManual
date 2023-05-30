@@ -1,4 +1,8 @@
 # completeModInstallationManual
+
+THIS IS A WORK IN PROGRESS. DO NOT USE UNTIL THIS NOTICE HAS BEEN REMOVED.
+TODO: Check liability and stuff in the license.
+
 This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu (developed with lunar lobster 23.04) including pipewire support.
 
 I wrote this down for others who would like to use MOD but cannot find a description on what has to be done and how things should work with each other. Basically this describes the setup of my notebook that I use for my guitar effects for jamming and recording guitar tracks. 
