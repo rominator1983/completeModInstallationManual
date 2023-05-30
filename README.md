@@ -80,6 +80,7 @@ The MOD that you can buy (for example the MOD dwarf) does all of that in a small
      3. https://github.com/moddevices/mod-plugin-builder (This will take the longest)
 
                cd ~/mod-plugin-builder
+               # This will take hours on ANY machine
                ./bootstrap.sh x86_64
 
 TODO: Playing audio from browser etc. even when MOD is running
