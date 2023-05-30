@@ -58,7 +58,17 @@ Open a console and paste this the following lines
 
 Follow the build steps on the pages in this order:
 1. https://github.com/moddevices/mod-host
-    Use `sudo make install` instead of only `make install`
-3. 
+    
+        cd ~/mod-host
+        make
+        sudo make install
+    
+3. https://github.com/moddevices/mod-ui
+
+        cd ~/mood-ui
+        virtualenv modui-env
+        source modui-env/bin/activate
+        pip3 install -r requirements.txt
+        make -C utils
 
 TODO: Playing audio from browser etc. even when MOD is running
