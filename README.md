@@ -1,5 +1,5 @@
 # completeModInstallationManual
-This file describes how to get a complete MOD installation up and running from scratch on a PC using the latest Ubuntu (developed with lunar lobster 23.04)
+This repository describes how to get a complete MOD installation up and running from scratch on a PC using the latest Ubuntu (developed with lunar lobster 23.04) including pipewire support.
 
 I wrote this down for others who would like to use MOD but cannot find a description on what has to be done and how. Basically this describes the setup of my notebook that I use for guitar effects for jamming and recording guitar tracks. 
 
@@ -30,3 +30,4 @@ TODO
 
 # Clone all needed repositories
 
+TODO
