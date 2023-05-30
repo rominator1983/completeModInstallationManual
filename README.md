@@ -28,7 +28,7 @@ TODO
     * ubuntustudio-audio
     * ubuntustudio-menu
     
-    This will take some minutes.
+    This will take some minutes. After tht restart the machine.
 
 # Clone all needed repositories
 
