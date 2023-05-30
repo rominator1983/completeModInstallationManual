@@ -32,7 +32,11 @@ TODO
 
 5. Install needed software
 
-    sudo apt-get install git  -y
+        sudo apt-get install git  -y
+    
+    As of [the documentation](https://github.com/moddevices/mod-host) install the following:
+    
+        sudo apt install libreadline-dev liblilv-dev lilv-utils libfftw3-dev libjack-jackd2-dev
 
 # Clone all needed repositories
 
