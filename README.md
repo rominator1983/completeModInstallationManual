@@ -73,6 +73,7 @@ Follow the build steps on the pages in this order:
 
 4. https://github.com/moddevices/mod-plugin-builder (This will take the longest)
 
+        cd ~/mod-plugin-builder
         ./bootstrap.sh x86_64
 
 TODO: Playing audio from browser etc. even when MOD is running
