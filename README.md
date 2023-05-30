@@ -32,7 +32,7 @@ TODO
 
 5. Install needed software
 
-    sudo apt-get install git
+    sudo apt-get install git  -y
 
 # Clone all needed repositories
 
