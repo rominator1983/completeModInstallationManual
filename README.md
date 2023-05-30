@@ -11,7 +11,10 @@ TODO
      1. Use "Install third-party software for graphics and Wi-Fi hardware"
      2. Use "Download and install support for additional media formats
 4. Install Ubuntu studio (TODO)
-    1. as of [the documentation](https://ubuntustudio.org/ubuntu-studio-installer/) Ubuntu studio can be installed by pressing the windows key and searching for "ubuntu studio".
+    
+    `sudo apt-get install ubuntustudio-installer -y`
+
+    As of [the documentation](https://ubuntustudio.org/ubuntu-studio-installer/) Ubuntu studio can be installed by starting the launcher by pressing the windows key and searching for "ubuntu studio" but that did not work for me as the ubuntustudio-installer was not installed out of the box.
 
 # Clone all needed repositories
 
