@@ -32,6 +32,14 @@ TODO
 
 # Clone all needed repositories
 
+Open a console and paste this the following lines
+
+    mkdir mod
+    cd mod
+    git clone --recurse-submodules https://github.com/moddevices/mod-host.git
+    git clone --recurse-submodules https://github.com/moddevices/mod-ui.git
+    git clone --recurse-submodules https://github.com/moddevices/mod-plugin-builder.git
+
 TODO
 
 TODO: Playing audio from browser etc. even when MOD is running
