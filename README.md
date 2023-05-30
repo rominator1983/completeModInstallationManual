@@ -3,8 +3,10 @@ This repository describes how to get a complete [MOD](https://github.com/moddevi
 
 I wrote this down for others who would like to use MOD but cannot find a description on what has to be done and how things should work with each other. Basically this describes the setup of my notebook that I use for my guitar effects for jamming and recording guitar tracks. 
 
-# What is MOD on your PC
-MOD is a lv2 host that allows you to connect multiple lv2 plugins (effects) in any order you like to modify your input signal (Guitar or everything else). It is not limited to daisy chaining but lets you connect effects in parallel too.
+# What is MOD on your Linux PC
+MOD is a lv2 host that allows you to connect multiple lv2 plugins (effects) in any order you like to modify your input signal (Guitar or everything else). It is not limited to daisy chaining but lets you connect effects in parallel too. This is all based on open source software.
+
+The MOD that you can buy (for example the MOD dwarf) does all of that in a small comfortable box based on fast ARM processors.
 
 # Description of the components
 
