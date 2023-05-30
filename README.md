@@ -58,6 +58,7 @@ Open a console and paste this the following lines
 
 Follow the build steps on the pages in this order:
 1. https://github.com/moddevices/mod-host
-2. 
+    Use `sudo make install` instead of only `make install`
+3. 
 
 TODO: Playing audio from browser etc. even when MOD is running
