@@ -56,6 +56,8 @@ Open a console and paste this the following lines
     git clone --recurse-submodules https://github.com/moddevices/mod-ui.git
     git clone --recurse-submodules https://github.com/moddevices/mod-plugin-builder.git
 
-TODO
+Follow the build steps on the pages in this order:
+1. https://github.com/moddevices/mod-host
+2. 
 
 TODO: Playing audio from browser etc. even when MOD is running
