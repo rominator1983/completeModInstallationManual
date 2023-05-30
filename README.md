@@ -10,11 +10,23 @@ TODO
 1. Install Ubuntu
      1. Use "Install third-party software for graphics and Wi-Fi hardware"
      2. Use "Download and install support for additional media formats
-4. Install Ubuntu studio (TODO)
+     3. After installing when asked for sending system information select not to send in order to not cause unneccessary network trafic.
+     4. `sudo apt-get install ubuntustudio-installer -y`
+
+4. Install Ubuntu studio and needed components
     
     `sudo apt-get install ubuntustudio-installer -y`
 
     As of [the documentation](https://ubuntustudio.org/ubuntu-studio-installer/) Ubuntu studio can be installed by starting the launcher by pressing the windows key and searching for "ubuntu studio" but that did not work for me as the ubuntustudio-installer was not installed out of the box.
+
+    Then start the Ubuntu studio installer by pressing the windows key and searching for "studio" and install the following components:
+    
+    * linux-lowlatency
+    * ubuntustudio-lowlatency-settings
+    * ubuntustudio-performance-tweaks
+    * ubuntustudio-pipewire-config
+    * ubuntustudio-audio
+    * ubuntustudio-menu
 
 # Clone all needed repositories
 
