@@ -13,7 +13,7 @@ TODO
      3. After installing when asked for sending system information select not to send in order to not cause unneccessary network trafic.
      4. `sudo apt-get install ubuntustudio-installer -y`
 
-4. Install Ubuntu studio and needed components
+4. Install Ubuntu studio and its components
     
     `sudo apt-get install ubuntustudio-installer -y`
 
@@ -29,6 +29,10 @@ TODO
     * ubuntustudio-menu
     
     This will take some minutes. After tht restart the machine.
+
+5. Install needed software
+
+    sudo apt-get install git
 
 # Clone all needed repositories
 
