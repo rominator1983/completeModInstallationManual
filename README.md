@@ -19,7 +19,7 @@ TODO
 
     As of [the documentation](https://ubuntustudio.org/ubuntu-studio-installer/) Ubuntu studio can be installed by starting the launcher by pressing the windows key and searching for "ubuntu studio" but that did not work for me as the ubuntustudio-installer was not installed out of the box.
 
-    Then start the Ubuntu studio installer by pressing the windows key and searching for "studio" and install the following components:
+    Then start the Ubuntu studio installer by pressing the windows key and searching for "studio" and install the following components
     
     * linux-lowlatency
     * ubuntustudio-lowlatency-settings
@@ -27,6 +27,8 @@ TODO
     * ubuntustudio-pipewire-config
     * ubuntustudio-audio
     * ubuntustudio-menu
+    
+    This will take some minutes.
 
 # Clone all needed repositories
 
