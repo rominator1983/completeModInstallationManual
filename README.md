@@ -8,7 +8,9 @@ TODO
 
 # Base setup of operating system
 1. Install Ubuntu
-2. Install Ubuntu studio (TODO)
+     1. Use "Install third-party software for graphics and Wi-Fi hardware"
+     2. Use "Download and install support for additional media formats
+4. Install Ubuntu studio (TODO)
 
 # Clone all needed repositories
 
