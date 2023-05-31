@@ -77,13 +77,13 @@ It is however not possible to use the built in MOD store to buy additional plugi
 5. Build all components in this order. I have linked the things to get you to the detailed build instructions.
      1. https://github.com/moddevices/mod-host
     
-               cd ~/mod-host
+               cd ~/mod/mod-host
                make
                sudo make install
     
      2. https://github.com/moddevices/mod-ui
 
-               cd ~/mood-ui
+               cd ~/mod/mod-ui
                virtualenv modui-env
                source modui-env/bin/activate
                pip3 install -r requirements.txt
@@ -91,13 +91,13 @@ It is however not possible to use the built in MOD store to buy additional plugi
 
      3. https://github.com/moddevices/mod-plugin-builder (This will take the longest)
 
-               cd ~/mod-plugin-builder
+               cd ~/mod/mod-plugin-builder
                # This will take hours on ANY machine
                ./bootstrap.sh x86_64
 
 6. Build all plugins from mod-plugin-builder
 
-        cd ~/mod-plugin-builder
+        cd ~/mod/mod-plugin-builder
         wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/preparePluginCompilation -O preparePluginCompilation
         chmod 777 preparePluginCompilation
         ./preparePluginCompilation
