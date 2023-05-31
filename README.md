@@ -1,19 +1,21 @@
 # completeModInstallationManual
 
-THIS IS A WORK IN PROGRESS. DO NOT USE UNTIL THIS NOTICE HAS BEEN REMOVED.
-
-As this manual is published under the MIT license I cannot be held liable for any damage on any of your hardware or body parts (especially your ears) that result from using this manual. Start things only when setting the volume to 0%.
-
-THIS IS NOT A JOKE. When running MOD carelessly with a laptop sound card with a built in microphone and speakers there can be really unpleasant feedback noises.
-
 This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu (developed with lunar lobster 23.04) including pipewire support.
 
 I wrote this down for others who would like to use MOD but cannot find a description on what has to be done and how things should work with each other. Basically this describes the setup of my notebook that I use for my guitar effects for jamming and recording guitar tracks. 
 
-# What is MOD on your Linux PC
-MOD is a lv2 host that allows you to connect multiple lv2 plugins (effects) in any order you like to modify your input signal (Guitar or everything else). It is not limited to daisy chaining but lets you connect effects in parallel too. This is all based on open source software.
+# Disclaimer
+As this manual is published under the MIT license I cannot be held liable for any damage on any of your hardware or body parts (especially your ears) that result from using this manual. Start things only when setting the volume to 0%.
 
-The MOD that you can buy (for example the MOD dwarf) does all of that in a small comfortable box based on fast ARM processors.
+THIS IS NOT A JOKE. When running MOD carelessly with a laptop sound card with a built in microphone and speakers there can be really unpleasant feedback noises.
+
+# What is MOD on your Linux PC
+MOD is an lv2 host that allows you to connect multiple lv2 plugins (aka sound effects) in any order you like to modify your input signal (Guitar, vocals, saxophone or everything else). It is not limited to daisy chaining but lets you connect effects in parallel too. This is all based on open source software and can be used by anyone for free.
+
+The MOD that you can buy (for example the MOD dwarf) does all of that in a small comfortable box based on fast ARM processorsm and decent audio I/O equipment.
+
+However it is possible to use the same software on your PC which this manual describes. You can do this for every day use or to test things before buying a MOD.
+It is however not possible to use the built in MOD store to buy additional plugins/effects provided by the MDO community and the MOD team.
 
 # Description of the components
 
