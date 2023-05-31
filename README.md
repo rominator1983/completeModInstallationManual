@@ -4,6 +4,8 @@ This repository describes how to get a complete [MOD](https://github.com/moddevi
 
 I wrote this down for others who would like to use MOD but cannot find a description on what has to be done and how things should work with each other. Basically this describes the setup of my notebook that I use for my guitar effects for jamming and recording guitar tracks. 
 
+Special thanks to @falkTX for making this all even remotely possible.
+
 # Disclaimer
 
 This is work in progress. Do not use until this notice has been removed.
