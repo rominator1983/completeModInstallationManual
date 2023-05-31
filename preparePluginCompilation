@@ -6,4 +6,4 @@ for d in *; do
 done
 cd ~/mod/mod-plugin-builder
 chmod 777 compileAllPlugins
-#./compileAllPlugins
+./compileAllPlugins
