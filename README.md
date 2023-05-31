@@ -1,7 +1,10 @@
 # completeModInstallationManual
 
 THIS IS A WORK IN PROGRESS. DO NOT USE UNTIL THIS NOTICE HAS BEEN REMOVED.
-TODO: Check liability and stuff in the license.
+
+As this manual is published under the MIT license I cannot be held liable for any damage on any of your hardware or body parts (especially your ears) that result from using this manual. Start things only when setting the volume to 0%.
+
+THIS IS NOT A JOKE. When running MOD carelessly with a laptop sound card with a built in microphone and speakers there can be really unpleasant feedback noises.
 
 This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu (developed with lunar lobster 23.04) including pipewire support.
 
