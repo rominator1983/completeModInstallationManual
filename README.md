@@ -97,6 +97,11 @@ It is however not possible to use the built in MOD store to buy additional plugi
 
 6. Build all plugins from mod-plugin-builder
 
+    The [documentation](https://github.com/moddevices/mod-plugin-builder) tells you how to build individual plugin packages.
+    This is hard and not so much fun. [mod-live-usb](https://github.com/moddevices/mod-live-usb) could be used to build everything at once but aims at a different solution by using a USB stick to run MOD from.
+    So I made up this little script to allow you to build all plugin packages at once.
+    After building this there are build log files in `~/mod/mod-plugin-builder` where you can check if everything went well.
+
         cd ~/mod/mod-plugin-builder
         wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/preparePluginCompilation -O preparePluginCompilation
         chmod 777 preparePluginCompilation
@@ -105,3 +110,4 @@ It is however not possible to use the built in MOD store to buy additional plugi
 
 
 TODO: Playing audio from browser etc. even when MOD is running
+TODO: Add and describe start scripts and jackd setup
