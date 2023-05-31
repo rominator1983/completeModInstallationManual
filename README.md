@@ -101,6 +101,7 @@ It is however not possible to use the built in MOD store to buy additional plugi
         wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/preparePluginCompilation -O preparePluginCompilation
         chmod 777 preparePluginCompilation
         ./preparePluginCompilation
+        ./compileAllPlugins
 
 
 TODO: Playing audio from browser etc. even when MOD is running
