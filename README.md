@@ -74,7 +74,7 @@ It is however not possible to use the built in MOD store to buy additional plugi
         git clone --recurse-submodules https://github.com/moddevices/mod-ui.git
         git clone --recurse-submodules https://github.com/moddevices/mod-plugin-builder.git
 
-5. Follow the build steps on the pages in this order:
+5. Build all components in this order. I have linked the things to get you to the detailed build instructions.
      1. https://github.com/moddevices/mod-host
     
                cd ~/mod-host
@@ -94,5 +94,13 @@ It is however not possible to use the built in MOD store to buy additional plugi
                cd ~/mod-plugin-builder
                # This will take hours on ANY machine
                ./bootstrap.sh x86_64
+
+6. Build all plugins from mod-plugin-builder
+
+        cd ~/mod-plugin-builder
+        wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/preparePluginCompilation -O preparePluginCompilation
+        chmod 777 preparePluginCompilation
+        ./preparePluginCompilation
+
 
 TODO: Playing audio from browser etc. even when MOD is running
