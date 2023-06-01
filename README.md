@@ -86,6 +86,8 @@ It is however not possible to use the built in MOD store to buy additional plugi
      2. https://github.com/moddevices/mod-ui
 
                cd ~/mod/mod-ui
+               # this is needed to run that later
+               sudo apt-get install python3-pycryptodome
                virtualenv modui-env
                source modui-env/bin/activate
                pip3 install -r requirements.txt
