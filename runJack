@@ -1,0 +1,7 @@
+#!/bin/bash
+killall jackd
+sleep 1
+#jackd -R -P 80 -d alsa -d hw:UR22mkII,0 -r 96000 -p 768 -n 3 -X seq &
+jackd -R -P 80 -d alsa -d hw:UR22,0 -r 96000 -p 768 -n 3 -X seq &
+sleep 1
+systemctl --user restart pulseaudio.service

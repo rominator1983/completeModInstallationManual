@@ -1,0 +1,29 @@
+# JACK
+killall jackd
+sleep 1
+jackd -R -P 80 -d alsa -d hw:UR22,0 -r 96000 -p 512 -n 2 -X seq &
+#jackd -R -P 80 -d alsa -d hw:UR22mkII,0 -r 96000 -p 512 -n 3 -X seq &
+sleep 1
+systemctl --user restart pulseaudio.service
+
+cp -f ~/mod/mod-ui/data/last.json.default ~/mod/mod-ui/data/last.json 
+
+# MOD-HOST
+cd ~/mod/mod-host
+./mod-host -v -n -p 5555 -f 5556 &
+sleep 1
+
+# MOD-UI
+cd ~/mod/mod-ui
+virtualenv modui-env
+source modui-env/bin/activate
+
+export MOD_DEV_ENVIRONMENT=0
+export MOD_USER_FILES_DIR=~/mod/user-files
+python3 ./server.py &
+
+sleep 3
+
+firefox http://localhost:8888 &
+
+cd ~
