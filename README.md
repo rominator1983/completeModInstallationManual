@@ -86,13 +86,15 @@ It is however not possible to use the built in MOD store to buy additional plugi
      2. https://github.com/moddevices/mod-ui
 
                cd ~/mod/mod-ui
+               # this is needed to run that later
+               sudo apt-get remove pipenv -y
+               pip install pipenv
                virtualenv modui-env
                source modui-env/bin/activate
                pip3 install -r requirements.txt
                # this is needed to run that later
-               sudo apt-get remove pipenv -y
                pip install pycryptodomex
-               pip install pipenv
+               sed -i -e 's/collections.MutableMapping/collections.abc.MutableMapping/' modui-env/lib/python3.10/site-packages/tornado/httputil.py
                make -C utils
 
      3. https://github.com/moddevices/mod-plugin-builder (This will take the longest)
