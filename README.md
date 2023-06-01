@@ -94,7 +94,7 @@ It is however not possible to use the built in MOD store to buy additional plugi
                pip3 install -r requirements.txt
                # this is needed to run that later
                pip install pycryptodomex
-               sed -i -e 's/collections.MutableMapping/collections.abc.MutableMapping/' modui-env/lib/python3.10/site-packages/tornado/httputil.py
+               sed -i -e 's/collections.MutableMapping/collections.abc.MutableMapping/' modui-env/lib/python3.11/site-packages/tornado/httputil.py
                make -C utils
 
      3. https://github.com/moddevices/mod-plugin-builder (This will take the longest)
