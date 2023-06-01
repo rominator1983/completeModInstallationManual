@@ -104,6 +104,8 @@ It is however not possible to use the built in MOD store to buy additional plugi
     So I made up this little script to allow you to build all plugin packages at once.
     After building this there are build log files in `~/mod/mod-plugin-builder` where you can check if everything went well for each package.
 
+        # Needed forr SSH connection to github.com which is done by some of the plugin builds
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
         cd ~/mod/mod-plugin-builder
         wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/preparePluginCompilation -O preparePluginCompilation
         chmod 777 preparePluginCompilation
