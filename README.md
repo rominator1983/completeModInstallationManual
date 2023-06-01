@@ -90,7 +90,9 @@ It is however not possible to use the built in MOD store to buy additional plugi
                source modui-env/bin/activate
                pip3 install -r requirements.txt
                # this is needed to run that later
+               sudo apt-get remove pipenv -y
                pip install pycryptodomex
+               pip install pipenv
                make -C utils
 
      3. https://github.com/moddevices/mod-plugin-builder (This will take the longest)
