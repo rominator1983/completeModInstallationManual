@@ -37,7 +37,6 @@ It is however not possible to use the built in MOD store to buy additional plugi
      2. Use "Download and install support for additional media formats
      3. After installing when asked for sending system information select not to send in order to not cause unneccessary network trafic.
      4. Consider setting your screen timeout to never in order to not have your screen go blank mid session.
-     5. `sudo apt-get install ubuntustudio-installer -y`
 2. Install Ubuntu studio and its components
     As of [the documentation](https://ubuntustudio.org/ubuntu-studio-installer/) Ubuntu studio components can be installed by starting the launcher (I suppose windows key) and the ubuntu studio installer from there but that did not work for me as the ubuntustudio-installer was not installed out of the box. Instead do the following:
         `sudo apt-get install ubuntustudio-installer -y`
