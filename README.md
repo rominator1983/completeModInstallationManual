@@ -83,10 +83,10 @@ It is however not possible to use the built in MOD store to buy additional plugi
                
                # this is needed to run mod-ui later. This is probably a ubuntu thing
                sudo apt-get remove pipenv -y
-               pip install pipenv
                
                virtualenv modui-env
                source modui-env/bin/activate
+               pip install pipenv
                pip3 install -r requirements.txt
                # this is needed to run mod-ui later. This is probably a ubuntu thing
                pip install pycryptodomex
