@@ -62,6 +62,7 @@ It is however not possible to use the built in MOD store to buy additional plugi
 
     Open a console and paste this the following lines to checkout all the needed source code
 
+        cd ~
         mkdir mod
         cd mod
         git clone --recurse-submodules https://github.com/moddevices/mod-host.git
