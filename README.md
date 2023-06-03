@@ -25,18 +25,22 @@ It is however not possible to use the built in MOD store to buy additional plugi
 # Description of the components
 
 * MOD-host
+
     Runs lv2 plugins and connects them via a jack server (not neccessarily jackd) as desired
 * MOD-UI
+
     Controls MOD-host with a python webserver. Handles your presets.
 * MOD-plugin-builder
+
     A suite to build a huge list of LV2 plugins for MOD
 
 # Base setup of operating system
 1. Install Ubuntu
      1. Use "Install third-party software for graphics and Wi-Fi hardware"
      2. Use "Download and install support for additional media formats
-     3. After installing when asked for sending system information select not to send in order to not cause unneccessary network trafic.
-     4. Consider setting your screen timeout to never in order to not have your screen go blank mid session.
+     3. After installing when asked for sending system information select not to send this, in order to not cause unneccessary network trafic when you are recording in the studio with MOD.
+     4. Consider setting your screen timeout to never in order to not have your screen go blank when jamming with your friends with MOD.
+     5. Take some time to think about software updates and when to apply them, since - again - you don't want those to mess with you when you are live on stage with MOD.
 2. Install Ubuntu studio and its components
     As of [the documentation](https://ubuntustudio.org/ubuntu-studio-installer/) Ubuntu studio components can be installed by starting the launcher (I suppose windows key) and the ubuntu studio installer from there but that did not work for me as the ubuntustudio-installer was not installed out of the box. Instead do the following:
         `sudo apt-get install ubuntustudio-installer -y`
@@ -49,7 +53,7 @@ It is however not possible to use the built in MOD store to buy additional plugi
     * ubuntustudio-audio
     * ubuntustudio-menu
     
-    This will take some minutes. After that restart the machine.
+    This will take some minutes. After that better restart the machine and do not just logout/login as the installer tells you.
 
 # Install MOD
 1. Install needed software
@@ -119,12 +123,33 @@ It is however not possible to use the built in MOD store to buy additional plugi
         ~/mod/completeModInstallationManual/preparePluginCompilation
         # Again this will take quite a long time to finish
         ./compileAllPlugins
-5. Start Mod for the first time
-    Be sure to turn the volume on your main sound device to 0%
-        ~/mod/completeModInstallationManual/runMod
-    You should now see a firefox opening with the main MOD window.
-    To close MOD again just do
-        ~/mod/completeModInstallationManual/killMod
+    TODO: Copy all LV2 plugins without pretty interface too?!?
 
-TODO: Copy LV2 plugins without pretty interface?!?
-TODO: Describe start scripts and maybe jack setup? Sample rate etc.
+5. Start Mod for the first time
+    1. If you have multiple audio device be sure to select the correct audio device via the Ubuntu settings
+    2. Be sure to turn the volume on your main sound device to 0% in order to avoid feedback.
+    3. Run MOD
+            ~/mod/completeModInstallationManual/runMod
+        You should now see a firefox opening with the main MOD window. There are several tutorials on what to do from here so I won't cover those.
+    4. Close MOD
+        To close MOD again just do
+            ~/mod/completeModInstallationManual/killMod
+
+6. Get rid of a dull sound
+    When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff.
+    This might be because you are missing out on amp and cabinet simulation. This would also happen if you connected your headphones directoly to a distortion effect pedal. (DO NOT EVEN TRY THIS. IT MIGHT BREAK YOUR EQUIPMENT OR EARS.)
+    In order to let MOD shine you need a decent amp simulation in your effect chain, followed by a cabinet simulation. I prefer to use impulse responses for cabinet simulations.
+    TODO: Describe how to use impulse responses.
+    TODO: Make a simple effect chain setup and describe/copy that here.
+    
+8. Cnsiderations for starting MOD
+    Up to this point you have been setting up MOD to run using pipewires jack server implementation (that you have chosen to install as part of the Ubuntu studio components).
+    This means that MOD is now using your systems default audio device with pipewire.
+    When you are using a notebook like me you are probably using an external USB sound card and you might want to use that per default with MOD without thinking about it or manually changing devices in the Ubuntu settings.
+    To choose the right sound card every time when starting MOD you can change the sound card selection in the runMod script.
+    TODO: Add a line with wpctl for my setup! Check how sample rate and bit depth work in pipewire/jack. Check the output of pw-top when running MOD.
+    Edit `~/mod/completeModInstallationManual/runMod` and uncomment and edit the line with `wpctl ...`
+    
+    TODO: Default.json 
+    
+    TODO: Describe start scripts and maybe jack setup? Sample rate etc.
