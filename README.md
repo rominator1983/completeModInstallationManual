@@ -149,7 +149,12 @@ It is however not possible to use the built in MOD store to buy additional plugi
     To choose the right sound card every time when starting MOD you can change the sound card selection in the runMod script.
     TODO: Add a line with wpctl for my setup! Check how sample rate and bit depth work in pipewire/jack. Check the output of pw-top when running MOD. Checkot https://www.ypsidanger.com/headphone-speaker-fast-switching-with-pipewire/
     Edit `~/mod/completeModInstallationManual/runMod` and uncomment and edit the line with `wpctl ...`
+
+7. Default.json 
+    runMod copies a simple/working effect setup (json) to `~/mod/mod-ui/data/last.json`. The reason for that is, that if something breaks an installed LV2 plugin that is in use in your last loaded effect chain, then MOD wont start and you have a hard time figuring out, what's wrong and how to fix it. Thus I have made a simple tuner config that is referenced in a json file that gets copied over before starting MOD. To leverage that, create your own simple default effect chain and copy TODO: finish sentence.
+
+8. Not using pipewire
+    If you are old school and do not want to use pipewire you can start MOD with jackd using alsa instead. Part of that is commented out in the runMod script. I have done this with pulseadio prior to lunar lobster but I have not done that with pipewure. Pulseaudio has been able to be be set up to work on base of jack which I have done to be able to play on my guitar and listen to other sutff (youtube etc.) in parallel to play along to. This can be done with pipewire too but since pipewire implements its own jack server I did not go any further and have now abandonded jackd all together. 
     
-    TODO: Default.json 
     
     TODO: Describe start scripts and maybe jack setup? Sample rate etc.
