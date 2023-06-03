@@ -147,7 +147,7 @@ It is however not possible to use the built in MOD store to buy additional plugi
     This means that MOD is now using your systems default audio device with pipewire.
     When you are using a notebook like me you are probably using an external USB sound card and you might want to use that per default with MOD without thinking about it or manually changing devices in the Ubuntu settings.
     To choose the right sound card every time when starting MOD you can change the sound card selection in the runMod script.
-    TODO: Add a line with wpctl for my setup! Check how sample rate and bit depth work in pipewire/jack. Check the output of pw-top when running MOD.
+    TODO: Add a line with wpctl for my setup! Check how sample rate and bit depth work in pipewire/jack. Check the output of pw-top when running MOD. Checkot https://www.ypsidanger.com/headphone-speaker-fast-switching-with-pipewire/
     Edit `~/mod/completeModInstallationManual/runMod` and uncomment and edit the line with `wpctl ...`
     
     TODO: Default.json 
