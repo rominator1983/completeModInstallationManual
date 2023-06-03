@@ -112,11 +112,18 @@ It is however not possible to use the built in MOD store to buy additional plugi
         # Needed forr SSH connection to github.com which is done by some of the plugin builds
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         cd ~/mod/mod-plugin-builder
-        cp ~/mod/completeModInstallationManual/preparePluginCompilation .
-        chmod 777 preparePluginCompilation
-        ./preparePluginCompilation
+        chmod 777 ~/mod/completeModInstallationManual/preparePluginCompilation
+        chmod 777 ~/mod/completeModInstallationManual/runMod
+        chmod 777 ~/mod/completeModInstallationManual/killMod
+        ~/mod/completeModInstallationManual/preparePluginCompilation
         # Again this will take quite a long time to finish
         ./compileAllPlugins
+7. Start Mod for the first time
+    Be sure to turn the volume on your main sound device to 0%
+        ~/mod/completeModInstallationManual/runMod
+    You should now see a firefox opening with the main MOD window.
+    To close MOD again just do
+        ~/mod/completeModInstallationManual/killMod
 
 TODO: Copy LV2 plugins without pretty interface?!?
 TODO: Describe start scripts and maybe jack setup? Sample rate etc.
