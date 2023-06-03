@@ -51,14 +51,15 @@ It is however not possible to use the built in MOD store to buy additional plugi
     
     This will take some minutes. After that restart the machine.
 
-3. Install needed software
+# Install MOD
+1. Install needed software
         sudo apt-get install git -y
     
     As of [here](https://github.com/moddevices/mod-host), [here](https://github.com/moddevices/mod-ui) and [here](https://github.com/moddevices/mod-plugin-builder) install the following:
     
         sudo apt install git libreadline-dev liblilv-dev lilv-utils libfftw3-dev libjack-jackd2-dev virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex gawk gperf gzip help2man nano perl patch tar texinfo unzip automake binutils build-essential cpio libtool libncurses-dev pkg-config python-is-python3 libtool-bin -y
     
-4. Clone all needed repositories
+2. Clone all needed repositories
 
     Open a console and paste this the following lines to checkout all the needed source code
 
@@ -70,7 +71,7 @@ It is however not possible to use the built in MOD store to buy additional plugi
         git clone --recurse-submodules https://github.com/moddevices/mod-plugin-builder.git
         git clone https://github.com/rominator1983/completeModInstallationManual.git
 
-5. Build all components. I have linked the things to get you to the detailed build instructions.
+3. Build all components. I have linked the things to get you to the detailed build instructions.
      1. https://github.com/moddevices/mod-host
     
                cd ~/mod/mod-host
@@ -102,7 +103,7 @@ It is however not possible to use the built in MOD store to buy additional plugi
                # This will take hours on ANY machine
                ./bootstrap.sh x86_64
 
-6. Build all plugins from mod-plugin-builder
+4. Build all plugins from mod-plugin-builder
 
     The [documentation](https://github.com/moddevices/mod-plugin-builder) tells you how to build individual plugin packages.
     This is hard and not so much fun. [mod-live-usb](https://github.com/moddevices/mod-live-usb) could be used to build everything at once but aims at a different solution by using a USB stick to run MOD from.
@@ -118,7 +119,7 @@ It is however not possible to use the built in MOD store to buy additional plugi
         ~/mod/completeModInstallationManual/preparePluginCompilation
         # Again this will take quite a long time to finish
         ./compileAllPlugins
-7. Start Mod for the first time
+5. Start Mod for the first time
     Be sure to turn the volume on your main sound device to 0%
         ~/mod/completeModInstallationManual/runMod
     You should now see a firefox opening with the main MOD window.
