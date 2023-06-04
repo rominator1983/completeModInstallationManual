@@ -47,8 +47,10 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
      4. Consider setting your screen timeout to never in order to not have your screen go blank when jamming with your friends with MOD.
      5. Take some time to think about software updates and when to apply them, since - again - you don't want those to mess with you when you are live on stage with MOD.
 2. Install Ubuntu studio and its components
+
     As of [the documentation](https://ubuntustudio.org/ubuntu-studio-installer/) Ubuntu studio components can be installed by starting the launcher (I suppose windows key) and the ubuntu studio installer from there but that did not work for me as the ubuntustudio-installer was not installed out of the box. Instead do the following:
-        `sudo apt-get install ubuntustudio-installer -y`
+        
+        sudo apt-get install ubuntustudio-installer -y
     
     Then start the Ubuntu studio installer by pressing the windows key and searching for "studio" and install the following components
     * linux-lowlatency
