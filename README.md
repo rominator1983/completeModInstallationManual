@@ -62,8 +62,9 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
     
     This will take some minutes. After that better restart the machine and do not just logout/login as the installer tells you.
 
-# Install MOD
+# Install/Build MOD
 1. Install needed software
+
         sudo apt-get install git -y
     
     As of [here](https://github.com/moddevices/mod-host), [here](https://github.com/moddevices/mod-ui) and [here](https://github.com/moddevices/mod-plugin-builder) install the following (be sure to copy the complete long line):
@@ -129,8 +130,6 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         cd ~/mod/mod-plugin-builder
         chmod 777 ~/mod/completeModInstallationManual/preparePluginCompilation
-        chmod 777 ~/mod/completeModInstallationManual/runMod
-        chmod 777 ~/mod/completeModInstallationManual/killMod
         ~/mod/completeModInstallationManual/preparePluginCompilation
         
         # Again this will take quite a long time to finish
@@ -140,67 +139,75 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
         
         `sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/`
 
-5. Pipewire/Jack config
+# Pipewire/Jack config
     
-    MOD-host makes some assumptions on how jack things are named that are not true for the pipewire implementation of jack.
-    So the following settings in `/usr/share/pipewire/jack.conf` have to be made:
+MOD-host makes some assumptions on how jack things are named that are not true for the pipewire implementation of jack.
+So the following settings in `/usr/share/pipewire/jack.conf` have to be made:
     
-        jack.short-name = true
-        jack.filter-name = true
-        jack.filter-char = " "
-        jack.self-connect-mode = allow
-        jack.default-as-system = true
+    jack.short-name = true
+    jack.filter-name = true
+    jack.filter-char = " "
+    jack.self-connect-mode = allow
+    jack.default-as-system = true
         
-    The following settings in `/usr/share/pipewire/pipewire.conf` should be made if you want another sample rate than 44100: 
+The following settings in `/usr/share/pipewire/pipewire.conf` should be made if you want another sample rate than 44100: 
     
-        default.clock.allowed-rates = `[ 48000, 96000]`
-        default.clock.rate = 96000
+    default.clock.allowed-rates = `[ 48000, 96000]`
+    default.clock.rate = 96000
         
-    To check your current sample rate and buffer settings `pw-metadata -m -n settings`
-    To check the sample rate of running applications run `pw-top`
+To check your current sample rate and buffer settings `pw-metadata -m -n settings`
+To check the sample rate of running applications run `pw-top`
     
-    If you experience issues consult [the documentation](https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-JACK?version_id=336a4cac3eaa9cdbf20d894e815336da3c34c3d6)
+If you experience issues consult [the documentation](https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-JACK?version_id=336a4cac3eaa9cdbf20d894e815336da3c34c3d6)
     
-6. Start Mod for the first time
-    1. If you have multiple audio device, be sure to select the correct audio device via the Ubuntu settings
-    2. Be sure to turn the volume on your main sound device to 0% in order to avoid feedback.
+# Start Mod for the first time
 
-        This is neccessary because MOD connects the default input to the default output per default. If you are sitting on a laptop this will result in instant unpleasant and ear damaging feedback! :-( You have been warned!
-        `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%`
-    4. Run MOD
+1. If you have multiple audio device, be sure to select the correct audio device via the Ubuntu settings
+2. Be sure to turn the volume on your main sound device to 0% in order to avoid feedback.
 
-            ~/mod/completeModInstallationManual/runMod
+    This is neccessary because MOD connects the default input to the default output per default. If you are sitting on a laptop this will result in instant unpleasant and ear damaging feedback! :-( You have been warned!
+    `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%`
+
+4. Run MOD
+
+        chmod 777 ~/mod/completeModInstallationManual/runMod
+        ~/mod/completeModInstallationManual/runMod
         
-        You should now see firefox opening with the main MOD window. There are several tutorials on what to do from here so I won't cover those in detail.
+    You should now see firefox opening with the main MOD window. There are several tutorials on what to do from here so I won't cover those in detail.
         
-    4. Stop MOD
-        `~/mod/completeModInstallationManual/killMod`
+5. Stop MOD
 
-7. Get rid of a dull sound. Impulse responses and neural networks
+        chmod 777 ~/mod/completeModInstallationManual/killMod
+        ~/mod/completeModInstallationManual/killMod
 
-    When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff.
-    This might be because you are missing out on amp and cabinet simulation which you do need in the effect chain to get a decent sound.
-    In order to let MOD shine you normally need a decent amp simulation in your effect chain followed by a cabinet simulation jsut as you would set up when using a real amp and cabinet. I prefer to use neural network amp simulations and impulse responses for cabinet simulations.
+# Polish your sound
+Get rid of a dull sound by using impulse responses and neural networks
+
+When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff.
+This might be because you are missing out on amp and cabinet simulation which you do need in the effect chain to get a decent sound.
+In order to let MOD shine you normally need a decent amp simulation in your effect chain followed by a cabinet simulation jsut as you would set up when using a real amp and cabinet. I prefer to use neural network amp simulations and impulse responses for cabinet simulations.
     
-    `~/mod/completeModInstallationManual/runMod` sets the variable `MOD_USER_FILES_DIR` to `~/mod/user-files` (instead of the default `/data/user-files`).
-    So do this:
+`~/mod/completeModInstallationManual/runMod` sets the variable `MOD_USER_FILES_DIR` to `~/mod/user-files` (instead of the default `/data/user-files`).
+So do this:
     
-        mkdir ~/mod/user-files
-        mkdir ~/mod/user-files/Aida\ DSP\ Models
-        mkdir ~/mod/user-files/Reverb\ IRs
-        mkdir ~/mod/user-files/Speaker\ Cabinets\ IRs
+    mkdir ~/mod/user-files
+    mkdir ~/mod/user-files/Aida\ DSP\ Models
+    mkdir ~/mod/user-files/Reverb\ IRs
+    mkdir ~/mod/user-files/Speaker\ Cabinets\ IRs
         
-        # copy misplaced neural network definitions to user files directory
-        cp /usr/lib/lv2/rt-neural-generic.lv2/models/deer\ ink\ studios/* ~/mod/user-files/Speaker\ Cabinets\ IRs
+    # copy misplaced neural network definitions to user files directory
+    cp /usr/lib/lv2/rt-neural-generic.lv2/models/deer\ ink\ studios/* ~/mod/user-files/Speaker\ Cabinets\ IRs
     
-    Then get some impulse responses from [valhalir](https://valhallir.at/) or [anywhere on the internet](https://producelikeapro.com/blog/best-guitar-impulse-responses/) and place them `~/mod/user-files/Speaker Cabinets IRs`.
+Then get some impulse responses from [valhalir](https://valhallir.at/) or [anywhere on the internet](https://producelikeapro.com/blog/best-guitar-impulse-responses/) and place them `~/mod/user-files/Speaker Cabinets IRs`.
     
-    Then get more amp models from [the MOD community](https://forum.mod.audio/t/list-of-shared-models/9631) and place them `~/mod/user-files/Aida DSP Models`.
+Then get more amp models from [the MOD community](https://forum.mod.audio/t/list-of-shared-models/9631) and place them `~/mod/user-files/Aida DSP Models`.
     
-    Then you can use the plugins 'IR loader cabsim' and 'aida-x' and get the best tones.
+Then you can use the plugins 'IR loader cabsim' and 'aida-x' and get the best tones.
     
-8. Cnsiderations for starting MOD
+# Cnsiderations for starting MOD
 
+1. Device selection
+    
     Up to this point you have been setting up MOD to run using pipewires jack server implementation.
     This means that MOD is using your systems selected audio device with pipewire. Therefor you can also play a youtube video or do some ardour magic when running MOD.
     When you are using a notebook like me you are probably using an external USB sound card for better latency and sound quality and you might want to use this device per default when running MOD without thinking about it or manually changing devices in the Ubuntu settings. This is especially true considering the ear deafing feedback that might occurr when sitting in front of a laptop that I mentioned several times.
@@ -220,6 +227,6 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
         pactl set-default-sink "alsa_output.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
         pactl set-default-source "alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"    
     
-9. Default.json 
+2. Default.json 
 
     `~/mod/completeModInstallationManual/runMod` copies a simple/working effect setup (json) to `~/mod/mod-ui/data/last.json`. The reason for that is, that if something (an update) breaks an installed LV2 plugin that is in use in your last loaded effect chain, then MOD wont start and you have a hard time figuring out, what's wrong and how to fix it. Thus I have made a simple tuner config that is referenced in a json file that gets copied over before starting MOD. To leverage that, create your own simple default effect chain and copy `~/mod/mod-ui/data/last.json` to `~/mod/mod-ui/data/last.json.default`
