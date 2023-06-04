@@ -66,7 +66,7 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
 1. Install needed software
         sudo apt-get install git -y
     
-    As of [here](https://github.com/moddevices/mod-host), [here](https://github.com/moddevices/mod-ui) and [here](https://github.com/moddevices/mod-plugin-builder) install the following:
+    As of [here](https://github.com/moddevices/mod-host), [here](https://github.com/moddevices/mod-ui) and [here](https://github.com/moddevices/mod-plugin-builder) install the following (be sure to copy the complete long line):
     
         sudo apt install git libreadline-dev liblilv-dev lilv-utils libfftw3-dev libjack-jackd2-dev virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex gawk gperf gzip help2man nano perl patch tar texinfo unzip automake binutils build-essential cpio libtool libncurses-dev pkg-config python-is-python3 libtool-bin -y
     
@@ -93,18 +93,23 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
 
                cd ~/mod/mod-ui
                
-               # this is needed to run mod-ui later. This is probably a ubuntu thing
+               # this was sometimes needed to run mod-ui later. This is probably a ubuntu thing
                sudo apt-get remove pipenv -y
                
                virtualenv modui-env
                source modui-env/bin/activate
                pip install pipenv
                pip3 install -r requirements.txt
-               # this is needed to run mod-ui later. This is probably a ubuntu thing
+               
+               # this is also needed to run mod-ui later
                pip install pycryptodomex
                
-               # this is stated in requirements.txt as needed for python 3.10 (and later)
-               sed -i -e 's/collections.MutableMapping/collections.abc.MutableMapping/' modui-env/lib/python3.11/site-packages/tornado/httputil.py
+           This is stated in requirements.txt as needed for python 3.10 (and obviously later).
+               
+               pyMinorVersion="$(python3 -c 'import sys; print(sys.version_info[:][1])')"
+               sed -i -e 's/collections.MutableMapping/collections.abc.MutableMapping/' modui-env/lib/python3."$pyMinorVersion"/site-packages/tornado/httputil.py
+           
+           Build
                
                make -C utils
 
@@ -118,25 +123,28 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
 
     The [documentation](https://github.com/moddevices/mod-plugin-builder) tells you how to build individual plugin packages.
     This is hard and not so much fun. [mod-live-usb](https://github.com/moddevices/mod-live-usb) could be used to build everything at once but aims at a different solution by using a USB stick to run MOD from.
-    So I made up this little script to allow you to build all plugin packages at once.
-    After building this there are build log files in `~/mod/mod-plugin-builder` where you can check if everything went well for each package.
+    So I made up (this little script)[https://github.com/rominator1983/completeModInstallationManual/blob/main/preparePluginCompilation] to allow you to build all plugin packages at once.
 
-        # Needed forr SSH connection to github.com which is done by some of the plugin builds
+        # Needed for SSH connection to github.com which is done by some of the plugin builds
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         cd ~/mod/mod-plugin-builder
         chmod 777 ~/mod/completeModInstallationManual/preparePluginCompilation
         chmod 777 ~/mod/completeModInstallationManual/runMod
         chmod 777 ~/mod/completeModInstallationManual/killMod
         ~/mod/completeModInstallationManual/preparePluginCompilation
+        
         # Again this will take quite a long time to finish
         ./compileAllPlugins
     
     After that is done you can check the build output of the different plugin packages in `build{package}.log`. In the end do the following to copy the plugins to your computers lv2 directory to enjoy more than 1000 effects at you fingertips:
+        
         `sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/`
 
 5. Pipewire/Jack config
+    
     MOD-host makes some assumptions on how jack things are named that are not true for the pipewire implementation of jack.
     So the following settings in `/usr/share/pipewire/jack.conf` have to be made:
+    
         jack.short-name = true
         jack.filter-name = true
         jack.filter-char = " "
@@ -144,11 +152,13 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
         jack.default-as-system = true
         
     The following settings in `/usr/share/pipewire/pipewire.conf` should be made if you want another sample rate than 44100: 
+    
         default.clock.allowed-rates = `[ 48000, 96000]`
         default.clock.rate = 96000
         
     To check your current sample rate and buffer settings `pw-metadata -m -n settings`
     To check the sample rate of running applications run `pw-top`
+    
     If you experience issues consult (the documentation)[https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-JACK?version_id=336a4cac3eaa9cdbf20d894e815336da3c34c3d6]
     
 6. Start Mod for the first time
