@@ -1,10 +1,5 @@
-# JACK setup. Left for reference if JACK via ALSA shall be used
-#killall jackd
-#sleep 1
-#jackd -R -P 80 -d alsa -d hw:UR22,0 -r 96000 -p 512 -n 2 -X seq &
-#jackd -R -P 80 -d alsa -d hw:UR22mkII,0 -r 96000 -p 512 -n 3 -X seq &
-#sleep 1
-#systemctl --user restart pulseaudio.service
+#pactl set-default-sink "alsa_output.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
+#pactl set-default-source "alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
 
 # Copy a working default to the last setting in order to always be able to start MOD even if some recently loaded plugin crashes during load because of an update or else
 cp -f ~/mod/mod-ui/data/last.json.default ~/mod/mod-ui/data/last.json 
