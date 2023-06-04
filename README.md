@@ -129,27 +129,11 @@ It is however not possible to use the built in MOD store to buy additional plugi
         ~/mod/completeModInstallationManual/preparePluginCompilation
         # Again this will take quite a long time to finish
         ./compileAllPlugins
-    After that is done you can check the build output of the different plugin packages. In the end do the following to copy the plugins to your computers lv2 directory to enjoy > 1000 effects at you fingertips:
+    
+    After that is done you can check the build output of the different plugin packages in `build{package}.log`. In the end do the following to copy the plugins to your computers lv2 directory to enjoy more than 1000 effects at you fingertips:
         `sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/`
 
-5. Start Mod for the first time
-    1. If you have multiple audio device be sure to select the correct audio device via the Ubuntu settings
-    2. Be sure to turn the volume on your main sound device to 0% in order to avoid feedback.
-    3. Run MOD
-            ~/mod/completeModInstallationManual/runMod
-        You should now see a firefox opening with the main MOD window. There are several tutorials on what to do from here so I won't cover those.
-    4. Close MOD
-        To close MOD again just do
-            ~/mod/completeModInstallationManual/killMod
-
-6. Get rid of a dull sound
-    When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff.
-    This might be because you are missing out on amp and cabinet simulation. This would also happen if you connected your headphones directoly to a distortion effect pedal. (DO NOT EVEN TRY THIS. IT MIGHT BREAK YOUR EQUIPMENT OR EARS.)
-    In order to let MOD shine you need a decent amp simulation in your effect chain, followed by a cabinet simulation. I prefer to use impulse responses for cabinet simulations.
-    TODO: Describe how to use impulse responses.
-    TODO: Make a simple effect chain setup and describe/copy that here.
-
-7. Pipewire/Jack config
+5. Pipewire/Jack config
     The following settings in `/usr/share/pipewire/jack.conf` have to be made:
         jack.short-name = true
         jack.filter-name = true
@@ -157,11 +141,31 @@ It is however not possible to use the built in MOD store to buy additional plugi
         jack.self-connect-mode = allow
         jack.default-as-system = true
         
-    Use the following to check your current sample rate and buffer settings `pw-metadata -m -n settings`
-    You can edit `/usr/share/pipewire/pipewire.conf` and uncomment default.clock.allowed-rates and change the value to `[ 44100, 48000, 96000]` and `default.clock.rate` to 96000
-    TODO (not sure, if needed?): `sudo apt-get install libspa-0.2-jack`
+    The following settings in `/usr/share/pipewire/pipewire.conf` should be made if you want another sample rate than 44100: 
+        default.clock.allowed-rates = `[ 48000, 96000]`
+        default.clock.rate = 96000
+        
+    To check your current sample rate and buffer settings `pw-metadata -m -n settings`
+    To check the sample rate of running applications run `pw-top`
+    If you experience issues consult (the documentation)[https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-JACK?version_id=336a4cac3eaa9cdbf20d894e815336da3c34c3d6]
     
+6. Start Mod for the first time
+    1. If you have multiple audio device be sure to select the correct audio device via the Ubuntu settings
+    2. Be sure to turn the volume on your main sound device to 0% in order to avoid feedback since MOD connects the default input to the default output per default. :-(
+    3. Run MOD
+        `~/mod/completeModInstallationManual/runMod`
+        You should now see a firefox opening with the main MOD window. There are several tutorials on what to do from here so I won't cover those in detail.
+        
+    4. Stop MOD
+        `~/mod/completeModInstallationManual/killMod`
 
+7. Get rid of a dull sound
+    When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff.
+    This might be because you are missing out on amp and cabinet simulation. This would also happen if you connected your headphones directoly to a distortion effect pedal. (DO NOT EVEN TRY THIS. IT MIGHT BREAK YOUR EQUIPMENT OR EARS.)
+    In order to let MOD shine you need a decent amp simulation in your effect chain, followed by a cabinet simulation. I prefer to use impulse responses for cabinet simulations.
+    TODO: Describe how to use impulse responses.
+    TODO: Make a simple effect chain setup and describe/copy that here.
+    
 8. Cnsiderations for starting MOD
     Up to this point you have been setting up MOD to run using pipewires jack server implementation (that you have chosen to install as part of the Ubuntu studio components).
     This means that MOD is now using your systems default audio device with pipewire.
@@ -170,11 +174,6 @@ It is however not possible to use the built in MOD store to buy additional plugi
     TODO: Add a line with wpctl for my setup! Check how sample rate and bit depth work in pipewire/jack. Check the output of pw-top when running MOD. Checkot https://www.ypsidanger.com/headphone-speaker-fast-switching-with-pipewire/
     Edit `~/mod/completeModInstallationManual/runMod` and uncomment and edit the line with `wpctl ...`
 
-7. Default.json 
+9. Default.json 
     runMod copies a simple/working effect setup (json) to `~/mod/mod-ui/data/last.json`. The reason for that is, that if something breaks an installed LV2 plugin that is in use in your last loaded effect chain, then MOD wont start and you have a hard time figuring out, what's wrong and how to fix it. Thus I have made a simple tuner config that is referenced in a json file that gets copied over before starting MOD. To leverage that, create your own simple default effect chain and copy TODO: finish sentence.
-
-8. Not using pipewire
-    If you are old school and do not want to use pipewire you can start MOD with jackd using alsa instead. Part of that is commented out in the runMod script. I have done this with pulseadio prior to lunar lobster but I have not done that with pipewure. Pulseaudio has been able to be be set up to work on base of jack which I have done to be able to play on my guitar and listen to other sutff (youtube etc.) in parallel to play along to. This can be done with pipewire too but since pipewire implements its own jack server I did not go any further and have now abandonded jackd all together. 
     
-    
-    TODO: Describe start scripts and maybe jack setup? Sample rate etc.
