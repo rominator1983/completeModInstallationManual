@@ -18,25 +18,26 @@ MOD is an lv2 host that allows you to connect multiple lv2 plugins (aka sound ef
 The MOD devices that you can buy (for example the MOD dwarf) do all of that in a small form factor and pretty box based on fast ARM processors and decent audio I/O equipment.
 
 However it is possible to use the same software on your PC. You can do this for every day use or just to test things before buying a MOD.
-It is however not possible to use the built in MOD store to buy additional plugins/effects provided by the MDO community and the MOD team.
+It is however (as far as I know) not possible to use the MOD store to buy additional plugins/effects provided by the MDO community and the MOD team.
 
 # Description of the used components
 
 * MOD-host
 
-    Runs lv2 plugins and connects them via a jack server (not neccessarily jackd) as desired
+    Runs lv2 plugins and connects them via a jack server (not neccessarily jackd).
+    
 * MOD-UI
 
     Controls MOD-host with a python webserver. Handles your presets.
+    
 * MOD-plugin-builder
 
-    A suite to build a huge list of LV2 plugins for MOD
+    A suite to build a huge list of LV2 plugins for MOD.
 
 * pipewire
     
-    The new audio sub system that ships with newer Ubuntu releases
-    It implements a jack server (that is, it is not jackd nor does it use or need jackd).
-    MOD-host makes some assumptions on how jack things are named that are not true for the pipewire implementation of jack. This will be addressed later on.
+    The new audio sub system that ships with newer Ubuntu releases since lunar lobster (23.04).
+    With pipewire-jack there is an implementation of a jack server (that is, it is not jackd nor does it use or need jackd).
 
 # Base setup of operating system
 1. Install Ubuntu
@@ -132,7 +133,8 @@ It is however not possible to use the built in MOD store to buy additional plugi
         `sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/`
 
 5. Pipewire/Jack config
-    The following settings in `/usr/share/pipewire/jack.conf` have to be made:
+    MOD-host makes some assumptions on how jack things are named that are not true for the pipewire implementation of jack.
+    So the following settings in `/usr/share/pipewire/jack.conf` have to be made:
         jack.short-name = true
         jack.filter-name = true
         jack.filter-char = " "
