@@ -176,15 +176,26 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
     4. Stop MOD
         `~/mod/completeModInstallationManual/killMod`
 
-7. Get rid of a dull sound
+7. Get rid of a dull sound. Impulse responses and neural networks
 
     When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff.
     This might be because you are missing out on amp and cabinet simulation which you do need in the effect chain to get a decent sound.
-    In order to let MOD shine you normally need a decent amp simulation in your effect chain followed by a cabinet simulation jsut as you would set up when using a real amp and cabinet. I prefer to use impulse responses for cabinet simulations.
+    In order to let MOD shine you normally need a decent amp simulation in your effect chain followed by a cabinet simulation jsut as you would set up when using a real amp and cabinet. I prefer to use neural network amp simulations and impulse responses for cabinet simulations.
     
-    TODO: Describe how to use impulse responses.
-    TODO: Describe how to download/use neural net jsons when getting this up and runnng.
-    TODO: Make a simple effect chain setup and describe/copy that here somehow (default bank).
+    `~/mod/completeModInstallationManual/runMod` sets the variable `MOD_USER_FILES_DIR` to `~/mod/user-files` (instead of the default `/data/user-files`).
+    So do this:
+    
+        mkdir ~/mod/user-files
+        mkdir ~/mod/user-files/Aida\ DSP\ Models
+        mkdir ~/mod/user-files/Reverb\ IRs
+        mkdir ~/mod/user-files/Speaker\ Cabinets\ IRs
+        
+        # copy misplaced neural network definitions to user files directory
+        cp /usr/lib/lv2/rt-neural-generic.lv2/models/deer\ ink\ studios/* ~/mod/user-files/Speaker\ Cabinets\ IRs
+    
+    Then get some impulse responses from [valhalir](https://valhallir.at/) or [anywhere on the internet](https://producelikeapro.com/blog/best-guitar-impulse-responses/) and place them `~/mod/user-files/Speaker\ Cabinets\ IRs`
+    
+    Then you can use the plugins 'IR loader cabsim' and 'aida-x' and get the best tones.
     
 8. Cnsiderations for starting MOD
 
