@@ -204,7 +204,7 @@ Then get more amp models from [the MOD community](https://forum.mod.audio/t/list
     
 Then you can use the plugins 'IR loader cabsim' and 'aida-x' and get the best tones.
     
-# Cnsiderations for starting MOD
+# Considerations for starting MOD
 
 1. Device selection
     
