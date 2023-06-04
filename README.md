@@ -123,7 +123,8 @@ It is however not possible to use the built in MOD store to buy additional plugi
         ~/mod/completeModInstallationManual/preparePluginCompilation
         # Again this will take quite a long time to finish
         ./compileAllPlugins
-    TODO: `sudo cp -r ~/mod-workdir/x86_64/plugins/ /usr/lib/lv2/`
+    After that is done you can check the build output of the different plugin packages. In the end do the following to copy the plugins to your computers lv2 directory to enjoy > 1000 effects at you fingertips:
+        `sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/`
 
 5. Start Mod for the first time
     1. If you have multiple audio device be sure to select the correct audio device via the Ubuntu settings
