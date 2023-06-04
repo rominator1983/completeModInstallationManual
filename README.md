@@ -143,7 +143,9 @@ It is however not possible to use the built in MOD store to buy additional plugi
     TODO: Make a simple effect chain setup and describe/copy that here.
 
 7. Pipewire config
-    TODO: Edit `/usr/share/pipewire/pipewire.conf` and uncomment default.clock.allowed-rates and change value to `[ 44100, 48000, 96000]`
+    Use the following to check your current sample rate and buffer settings `pw-metadata -m -n settings`
+    You can edit `/usr/share/pipewire/pipewire.conf` and uncomment default.clock.allowed-rates and change the value to `[ 44100, 48000, 96000]` and `default.clock.rate` to 96000
+    
 
 8. Cnsiderations for starting MOD
     Up to this point you have been setting up MOD to run using pipewires jack server implementation (that you have chosen to install as part of the Ubuntu studio components).
