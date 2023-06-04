@@ -8,7 +8,7 @@ Special thanks to @falkTX for making this all even remotely possible.
 
 # Disclaimer
 
-This is work in progress. Do not use until this notice has been removed.
+Some parts of this manual are marked with a TODO. There should be updates on those. Check the activity on this repository for more information.
 
 As this manual is published under the MIT license I cannot be held liable for any damage on any of your hardware or body parts (especially your ears) that result from using this manual. Start things only when setting the volume to 0%.
 
@@ -22,7 +22,7 @@ The MOD devices that you can buy (for example the MOD dwarf) do all of that in a
 However it is possible to use the same software on your PC. You can do this for every day use or just to test things before buying a MOD.
 It is however not possible to use the built in MOD store to buy additional plugins/effects provided by the MDO community and the MOD team.
 
-# Description of the components
+# Description of the used components
 
 * MOD-host
 
@@ -150,9 +150,11 @@ It is however not possible to use the built in MOD store to buy additional plugi
     If you experience issues consult (the documentation)[https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-JACK?version_id=336a4cac3eaa9cdbf20d894e815336da3c34c3d6]
     
 6. Start Mod for the first time
-    1. If you have multiple audio device be sure to select the correct audio device via the Ubuntu settings
-    2. Be sure to turn the volume on your main sound device to 0% in order to avoid feedback since MOD connects the default input to the default output per default. :-(
-    3. Run MOD
+    1. If you have multiple audio device, be sure to select the correct audio device via the Ubuntu settings
+    2. Be sure to turn the volume on your main sound device to 0% in order to avoid feedback.
+        This is neccessary because MOD connects the default input to the default output per default. If you are sitting on a laptop this will result in instant unpleasant and ear damaging feedback! :-( You have been warned!
+        `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%`
+    4. Run MOD
         `~/mod/completeModInstallationManual/runMod`
         You should now see a firefox opening with the main MOD window. There are several tutorials on what to do from here so I won't cover those in detail.
         
@@ -161,19 +163,27 @@ It is however not possible to use the built in MOD store to buy additional plugi
 
 7. Get rid of a dull sound
     When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff.
-    This might be because you are missing out on amp and cabinet simulation. This would also happen if you connected your headphones directoly to a distortion effect pedal. (DO NOT EVEN TRY THIS. IT MIGHT BREAK YOUR EQUIPMENT OR EARS.)
-    In order to let MOD shine you need a decent amp simulation in your effect chain, followed by a cabinet simulation. I prefer to use impulse responses for cabinet simulations.
+    This might be because you are missing out on amp and cabinet simulation which you do need in the effect chain to get a decent sound.
+    In order to let MOD shine you normally need a decent amp simulation in your effect chain followed by a cabinet simulation jsut as you would set up when using a real amp and cabinet. I prefer to use impulse responses for cabinet simulations.
     TODO: Describe how to use impulse responses.
-    TODO: Make a simple effect chain setup and describe/copy that here.
+    TODO: Describe how to download/use neural net jsons when getting this up and runnng.
+    TODO: Make a simple effect chain setup and describe/copy that here somehow (default bank).
     
 8. Cnsiderations for starting MOD
-    Up to this point you have been setting up MOD to run using pipewires jack server implementation (that you have chosen to install as part of the Ubuntu studio components).
-    This means that MOD is now using your systems default audio device with pipewire.
-    When you are using a notebook like me you are probably using an external USB sound card and you might want to use that per default with MOD without thinking about it or manually changing devices in the Ubuntu settings.
+    Up to this point you have been setting up MOD to run using pipewires jack server implementation.
+    This means that MOD is using your systems selected audio device with pipewire. Therefor you can also play a youtube video or do some ardour magic when running MOD.
+    When you are using a notebook like me you are probably using an external USB sound card for better latency and sound quality and you might want to use this device per default when running MOD without thinking about it or manually changing devices in the Ubuntu settings. This is especially true considering the ear deafing feedback that might occurr when sitting in front of a laptop that I mentioned several times.
     To choose the right sound card every time when starting MOD you can change the sound card selection in the runMod script.
-    TODO: Add a line with wpctl for my setup! Check how sample rate and bit depth work in pipewire/jack. Check the output of pw-top when running MOD. Checkot https://www.ypsidanger.com/headphone-speaker-fast-switching-with-pipewire/
-    Edit `~/mod/completeModInstallationManual/runMod` and uncomment and edit the line with `wpctl ...`
-
-9. Default.json 
-    runMod copies a simple/working effect setup (json) to `~/mod/mod-ui/data/last.json`. The reason for that is, that if something breaks an installed LV2 plugin that is in use in your last loaded effect chain, then MOD wont start and you have a hard time figuring out, what's wrong and how to fix it. Thus I have made a simple tuner config that is referenced in a json file that gets copied over before starting MOD. To leverage that, create your own simple default effect chain and copy TODO: finish sentence.
     
+    At the moment it seems there is no convenient pipewire way of doing this as `wpctl` has the problem of changing IDs so the pulseaudio command line tools seem the way to go for whatever reason:
+    `sudo apt install pulseaudio-utils -y`
+    To find out your desired audio input/output select the correct device in Ubuntu and then do
+        pactl get-default-sink
+        pactl get-default-source
+    
+    Copy the respective outputs of those statements and uncomment the corresponding lines in `~/mod/completeModInstallationManual/runMod` to look something like this:
+        pactl set-default-sink "alsa_output.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
+        pactl set-default-source "alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"    
+    
+9. Default.json 
+    `~/mod/completeModInstallationManual/runMod` copies a simple/working effect setup (json) to `~/mod/mod-ui/data/last.json`. The reason for that is, that if something (an update) breaks an installed LV2 plugin that is in use in your last loaded effect chain, then MOD wont start and you have a hard time figuring out, what's wrong and how to fix it. Thus I have made a simple tuner config that is referenced in a json file that gets copied over before starting MOD. To leverage that, create your own simple default effect chain and copy `~/mod/mod-ui/data/last.json` to `~/mod/mod-ui/data/last.json.default`
