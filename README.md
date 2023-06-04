@@ -141,7 +141,10 @@ It is however not possible to use the built in MOD store to buy additional plugi
     In order to let MOD shine you need a decent amp simulation in your effect chain, followed by a cabinet simulation. I prefer to use impulse responses for cabinet simulations.
     TODO: Describe how to use impulse responses.
     TODO: Make a simple effect chain setup and describe/copy that here.
-    
+
+7. Pipewire config
+    TODO: Edit `/usr/share/pipewire/pipewire.conf` and uncomment default.clock.allowed-rates and change value to `[ 44100, 48000, 96000]`
+
 8. Cnsiderations for starting MOD
     Up to this point you have been setting up MOD to run using pipewires jack server implementation (that you have chosen to install as part of the Ubuntu studio components).
     This means that MOD is now using your systems default audio device with pipewire.
