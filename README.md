@@ -34,6 +34,12 @@ It is however not possible to use the built in MOD store to buy additional plugi
 
     A suite to build a huge list of LV2 plugins for MOD
 
+* pipewire
+    
+    The new audio sub system that ships with newer Ubuntu releases
+    It implements a jack server (that is, it is not jackd nor does it use or need jackd).
+    MOD-host makes some assumptions on how jack things are named that are not true for the pipewire implementation of jack. This will be addressed later on.
+
 # Base setup of operating system
 1. Install Ubuntu
      1. Use "Install third-party software for graphics and Wi-Fi hardware"
@@ -143,10 +149,18 @@ It is however not possible to use the built in MOD store to buy additional plugi
     TODO: Describe how to use impulse responses.
     TODO: Make a simple effect chain setup and describe/copy that here.
 
-7. Pipewire config
+7. Pipewire/Jack config
+    The following settings in `/usr/share/pipewire/jack.conf` have to be made:
+        jack.short-name = true
+        jack.filter-name = true
+        jack.filter-char = " "
+        jack.self-connect-mode = allow
+        jack.default-as-system = true
+        
     Use the following to check your current sample rate and buffer settings `pw-metadata -m -n settings`
     You can edit `/usr/share/pipewire/pipewire.conf` and uncomment default.clock.allowed-rates and change the value to `[ 44100, 48000, 96000]` and `default.clock.rate` to 96000
-    TODO: `sudo apt-get install libspa-0.2-jack`
+    TODO (not sure, if needed?): `sudo apt-get install libspa-0.2-jack`
+    
 
 8. Cnsiderations for starting MOD
     Up to this point you have been setting up MOD to run using pipewires jack server implementation (that you have chosen to install as part of the Ubuntu studio components).
