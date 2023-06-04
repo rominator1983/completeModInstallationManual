@@ -193,7 +193,9 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
         # copy misplaced neural network definitions to user files directory
         cp /usr/lib/lv2/rt-neural-generic.lv2/models/deer\ ink\ studios/* ~/mod/user-files/Speaker\ Cabinets\ IRs
     
-    Then get some impulse responses from [valhalir](https://valhallir.at/) or [anywhere on the internet](https://producelikeapro.com/blog/best-guitar-impulse-responses/) and place them `~/mod/user-files/Speaker\ Cabinets\ IRs`
+    Then get some impulse responses from [valhalir](https://valhallir.at/) or [anywhere on the internet](https://producelikeapro.com/blog/best-guitar-impulse-responses/) and place them `~/mod/user-files/Speaker Cabinets IRs`.
+    
+    Then get more amp models from [the MOD community](https://forum.mod.audio/t/list-of-shared-models/9631) and place them `~/mod/user-files/Aida DSP Models`.
     
     Then you can use the plugins 'IR loader cabsim' and 'aida-x' and get the best tones.
     
