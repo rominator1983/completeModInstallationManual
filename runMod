@@ -1,11 +1,18 @@
 #pactl set-default-sink "alsa_output.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
 #pactl set-default-source "alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
+sleep 2
+
+#pw-metadata -n settings 0 clock.force-rate 96000
+#pw-metadata -n settings 0 clock.force-quantum 512
+
+sleep 1
 
 # Copy a working default to the last setting in order to always be able to start MOD even if some recently loaded plugin crashes during load because of an update or else
 cp -f ~/mod/mod-ui/data/last.json.default ~/mod/mod-ui/data/last.json 
 
 # MOD-HOST
 cd ~/mod/mod-host
+
 ./mod-host -v -n -p 5555 -f 5556 &
 sleep 1
 
