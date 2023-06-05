@@ -157,7 +157,12 @@ The following settings in `/usr/share/pipewire/pipewire.conf` should be made if 
         
 To check your current sample rate and buffer settings `pw-metadata -m -n settings`
 To check the sample rate of running applications run `pw-top`
-    
+
+In `~/mod/completeModInstallationManual/runMod` you can/should set the sample rate and buffer size. I had no clean sound (crackles, frequency shifts) without setting those. Start with a higher quantum and reasonable sample rate
+
+    pw-metadata -n settings 0 clock.force-rate 4800
+    pw-metadata -n settings 0 clock.force-quantum 1024
+
 If you experience issues consult [the documentation](https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-JACK?version_id=336a4cac3eaa9cdbf20d894e815336da3c34c3d6)
     
 # Start Mod for the first time
