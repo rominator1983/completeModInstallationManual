@@ -1,3 +1,6 @@
+#!/bin/bash
+./killMod
+
 #pactl set-default-sink "alsa_output.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
 #pactl set-default-source "alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
 sleep 2
