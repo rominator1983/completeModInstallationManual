@@ -185,7 +185,7 @@ If you experience issues consult [the documentation](https://gitlab.freedesktop.
         chmod 777 ~/mod/completeModInstallationManual/killMod
         ~/mod/completeModInstallationManual/killMod
 
-# Polish your sound
+# Polish your sound and user directories
 Get rid of a dull sound by using impulse responses and neural networks
 
 When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff.
@@ -196,9 +196,19 @@ In order to let MOD shine you normally need a decent amp simulation in your effe
 So do this:
     
     mkdir ~/mod/user-files
-    mkdir ~/mod/user-files/Aida\ DSP\ Models
-    mkdir ~/mod/user-files/Reverb\ IRs
-    mkdir ~/mod/user-files/Speaker\ Cabinets\ IRs
+    mkdir ¨/mod/user-files/Audio\ Loops
+    mkdir ¨/mod/user-files/Audio\ Recordings
+    mkdir ¨/mod/user-files/Audio\ Samples
+    mkdir ¨/mod/user-files/Audio\ Tracks
+    mkdir ¨/mod/user-files/Speaker\ Cabinets\ IRs
+    mkdir ¨/mod/user-files/Hydrogen\ Drumkits
+    mkdir ¨/mod/user-files/Reverb\ IRs
+    mkdir ¨/mod/user-files/MIDI\ Clips
+    mkdir ¨/mod/user-files/MIDI\ Songs
+    mkdir ¨/mod/user-files/SF2\ Instruments
+    mkdir ¨/mod/user-files/SFZ\ Instruments
+    mkdir ¨/mod/user-files/Aida\ DSP\ Models
+    mkdir ¨/mod/user-files/NAM\ Models
         
     # copy misplaced neural network definitions to user files directory
     cp /usr/lib/lv2/rt-neural-generic.lv2/models/deer\ ink\ studios/* ~/mod/user-files/Speaker\ Cabinets\ IRs
