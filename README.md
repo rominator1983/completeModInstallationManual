@@ -186,9 +186,9 @@ If you experience issues consult [the documentation](https://gitlab.freedesktop.
         ~/mod/completeModInstallationManual/killMod
 
 # Polish your sound and user directories
-Get rid of a dull sound by using impulse responses and neural networks
+Get rid of a dull sound by using impulse responses and neural networks.
 
-When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff.
+When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff when you are using MOD with headphones or PA (that is without a guitar/bass amplifier and case or an amplifier combo).
 This might be because you are missing out on amp and cabinet simulation which you do need in the effect chain to get a decent sound.
 In order to let MOD shine you normally need a decent amp simulation in your effect chain followed by a cabinet simulation jsut as you would set up when using a real amp and cabinet. I prefer to use neural network amp simulations and impulse responses for cabinet simulations.
     
@@ -215,9 +215,14 @@ So do this:
     
 Then get some impulse responses from [valhalir](https://valhallir.at/) or [anywhere on the internet](https://producelikeapro.com/blog/best-guitar-impulse-responses/) and place them `~/mod/user-files/Speaker Cabinets IRs`.
     
-Then get more amp models from [the MOD community](https://forum.mod.audio/t/list-of-shared-models/9631) and place them `~/mod/user-files/Aida DSP Models`.
+Then get more amp models from [the MOD community](https://forum.mod.audio/t/list-of-shared-models/9631) and place them in `~/mod/user-files/Aida DSP Models`.
     
 Then you can use the plugins 'IR loader cabsim' and 'aida-x' and get the best tones.
+
+Instead of 'aida-x' you can also use the 'Neural Amp Modeler' plugin. Then you can get tones from [tonehunt](https://tonehunt.org/) and place them in `¨/mod/user-files/NAM\ Models`.
+If you experience performance issues follow the documentation [here](https://github.com/mikeoliphant/neural-amp-modeler-lv2):
+    
+> If you are having trouble running a "standard" model, try looking for "feather" (the least expensive) models. You can find a list of ["feather"-tagged models on ToneHunt](https://tonehunt.org/?tags=feather-mdl). Note that tagging models is up to the submitter, so not all "feather" models are tagged as such - you should be able to find more if you dig around.
     
 # Considerations for starting MOD
 
