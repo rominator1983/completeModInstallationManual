@@ -141,6 +141,11 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
 
 # Pipewire/Jack config
     
+The following settings in `/usr/share/pipewire/pipewire.conf` should be made since 48000 is also the only working frequency for neural networks amp simulations (See further below): 
+    
+    default.clock.allowed-rates = `[ 48000, 96000]`
+    default.clock.rate = 48000
+        
 MOD-host makes some assumptions on how jack things are named that are not true for the pipewire implementation of jack.
 So the following settings in `/usr/share/pipewire/jack.conf` have to be made:
     
@@ -149,14 +154,13 @@ So the following settings in `/usr/share/pipewire/jack.conf` have to be made:
     jack.filter-char = " "
     jack.self-connect-mode = allow
     jack.default-as-system = true
-        
-The following settings in `/usr/share/pipewire/pipewire.conf` should be made if you want another sample rate than 44100: 
-    
-    default.clock.allowed-rates = `[ 48000, 96000]`
-    default.clock.rate = 96000
+    # this solves some issue with crackles.
+    node.rate = 1/48000
         
 To check your current sample rate and buffer settings `pw-metadata -m -n settings`
 To check the sample rate of running applications run `pw-top`
+
+When running MOD all sample rates should be the same (48000) otherwise you will hear some faint but disturbing crackles.
 
 In `~/mod/completeModInstallationManual/runMod` you can/should set the sample rate and buffer size. I had no clean sound (crackles, frequency shifts) without setting those. Start with a higher quantum and reasonable sample rate
 
