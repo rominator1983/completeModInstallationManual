@@ -62,7 +62,16 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
     
     This will take some minutes. After that better restart the machine and do not just logout/login as the installer tells you.
 
+3. Performance tweaks
+
+    sudo gedit /etc/default/grub
+    GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=off mitigations=off
+    sudo update-grub
+
+    https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Performance-tuning
+   
 # Install/Build MOD
+
 1. Install needed software
 
         sudo apt-get install git -y
