@@ -189,7 +189,7 @@ If you experience issues consult [the documentation](https://gitlab.freedesktop.
 
 I use a Steinberg audio interface that is capable of very short latency. Without the proper audio settings this left me with very faint but audible and annoying crackles.
 
-I overcome this by setting the following things in `/usr/share/wireplumber/main.lua.d/50-alsa-config.lua`
+I overcame this by setting the following things in `/usr/share/wireplumber/main.lua.d/50-alsa-config.lua`
 
     ["priority.driver"] = 1200,
     ["priority.session"] = 1200,
@@ -198,6 +198,7 @@ I overcome this by setting the following things in `/usr/share/wireplumber/main.
     # Try different (higher) values if this does not work.
     ["api.alsa.headaroom"] = 128
     ["api.alsa.period-size"] = 128
+    # This was not needed for me but might be for you
     ["api.alsa.disable-mmap"] = false
 
 # Start Mod for the first time
