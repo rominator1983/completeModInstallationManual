@@ -176,12 +176,12 @@ To check the sample rate, buffer (aka 'quantum' in pipewire) and sample size/for
 
 When running MOD all sample rates should be the same (48000) otherwise you will hear some faint but disturbing crackles.
 
-Edit `~/mod/completeModInstallationManual/runMod` to set the sample rate and buffer size (aka 'quantum' in pipewire) too before starting MOD. I had no clean sound (crackles, frequency shifts) without setting those. Start with a higher quantum (512) and reduce until things stop working.
+Edit `~/mod/completeModInstallationManual/runMod` to set the sample rate and buffer size (aka 'quantum' in pipewire) too before starting MOD. Start with a higher quantum (512) and reduce until things stop working.
 
     pw-metadata -n settings 0 clock.force-rate 48000
-    pw-metadata -n settings 0 clock.min-quantum 64
-    pw-metadata -n settings 0 clock.max-quantum 64
-    pw-metadata -n settings 0 clock.force-quantum 64
+    pw-metadata -n settings 0 clock.min-quantum 512
+    pw-metadata -n settings 0 clock.max-quantum 512
+    pw-metadata -n settings 0 clock.force-quantum 512
 
 If you experience issues consult [the documentation](https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-JACK?version_id=336a4cac3eaa9cdbf20d894e815336da3c34c3d6)
 
