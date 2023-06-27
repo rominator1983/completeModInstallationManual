@@ -155,7 +155,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
 # Pipewire/Jack config
     
-The following settings in `/usr/share/pipewire/pipewire.conf` should be made since 48000 is also the only working frequency for neural networks amp simulations (See further below): 
+The following settings in `/usr/share/pipewire/pipewire.conf` have to be made since 48000 is also the only used frequency for neural networks amp simulations (See further below): 
     
     default.clock.allowed-rates = `[ 48000, 96000]`
     default.clock.rate = 48000
@@ -168,21 +168,31 @@ So the following settings in `/usr/share/pipewire/jack.conf` have to be made:
     jack.filter-char = " "
     jack.self-connect-mode = allow
     jack.default-as-system = true
-    # this solves some issue with crackles.
+    # this solves some issue with crackles stemming from sample rate conversion.
     node.rate = 1/48000
         
-To check your current sample rate and buffer settings `pw-metadata -m -n settings`
-To check the sample rate of running applications run `pw-top`
+To check your current sample rate and buffer settings do `pw-metadata -m -n settings`
+To check the sample rate, buffer (aka 'quantum' in pipewire) and sample size/format of running applications run `pw-top`
 
 When running MOD all sample rates should be the same (48000) otherwise you will hear some faint but disturbing crackles.
 
-In `~/mod/completeModInstallationManual/runMod` you can/should set the sample rate and buffer size. I had no clean sound (crackles, frequency shifts) without setting those. Start with a higher quantum and reasonable sample rate
+Edit `~/mod/completeModInstallationManual/runMod` to set the sample rate and buffer size (aka 'quantum' in pipewire) too before starting MOD. I had no clean sound (crackles, frequency shifts) without setting those. Start with a higher quantum (512) and reduce until things stop working.
 
-    pw-metadata -n settings 0 clock.force-rate 4800
-    pw-metadata -n settings 0 clock.force-quantum 1024
+    pw-metadata -n settings 0 clock.force-rate 48000
+    pw-metadata -n settings 0 clock.min-quantum 64
+    pw-metadata -n settings 0 clock.max-quantum 64
+    pw-metadata -n settings 0 clock.force-quantum 64
 
 If you experience issues consult [the documentation](https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-JACK?version_id=336a4cac3eaa9cdbf20d894e815336da3c34c3d6)
-    
+
+# Crackles on USB device
+
+I use a Steinberg audio interface that is capable of very short latency. Without the proper audio settings this left me with very faint but audible and annoying crackles.
+
+I overcome this by setting the following things in `/usr/share/wireplumber/main.lua.d/50-alsa-config.lua`
+
+    TODO
+
 # Start Mod for the first time
 
 1. If you have multiple audio device, be sure to select the correct audio device via the Ubuntu settings
