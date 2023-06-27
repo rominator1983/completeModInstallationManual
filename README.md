@@ -191,7 +191,14 @@ I use a Steinberg audio interface that is capable of very short latency. Without
 
 I overcome this by setting the following things in `/usr/share/wireplumber/main.lua.d/50-alsa-config.lua`
 
-    TODO
+    ["priority.driver"] = 1200,
+    ["priority.session"] = 1200,
+    ["node.pause-on-idle"] = false,
+
+    # Try different (higher) values if this does not work.
+    ["api.alsa.headaroom"] = 128
+    ["api.alsa.period-size"] = 128
+    ["api.alsa.disable-mmap"] = false
 
 # Start Mod for the first time
 
