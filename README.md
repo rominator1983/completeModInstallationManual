@@ -1,6 +1,6 @@
 # completeModInstallationManual
 
-This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu (developed with lunar lobster 23.04) including pipewire support.
+This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu (developed with lunar lobster 23.04) including pipewire.
 
 I wrote this down for others who would like to use MOD but cannot find a description on what has to be done and how things should work with each other. Basically this describes the setup of my notebook that I use for my guitar effects for jamming and recording guitar tracks. 
 
@@ -8,17 +8,17 @@ Special thanks to @falkTX for making this all even remotely possible.
 
 # Disclaimer
 
-As this manual is published under the MIT license I cannot be held liable for any damage on any of your hardware or body parts (especially your ears) that result from using this manual. Start things only when the volume is set to 0% always.
+As this manual is published under the MIT license I cannot be held liable for any damage on any of your hardware or body parts (especially your ears) that result from using this manual (or not following it). Start MOD only when the volume is set to 0%.
 
-THIS IS NOT A JOKE. When running MOD carelessly with a laptop sound card with a built in microphone and speakers there can be really unpleasant/deafening feedback noises.
+THIS IS NOT A JOKE. When running MOD carelessly with a laptop sound card with a built-in microphone and speakers there can be really unpleasant/deafening feedback noises.
 
 # What is MOD on your Linux PC
-MOD is an lv2 host that allows you to connect multiple lv2 plugins (aka sound effects) in any order you like to modify your input signal (Guitar, vocals, saxophone or everything else). It is not limited to daisy chaining but lets you connect effects in parallel too. This is all based on open source software and can be used by anyone for free.
+MOD is an [lv2](https://lv2plug.in/) host that allows you to connect multiple lv2 plugins (aka sound effects) in any order you like to modify your input signal (Guitar, vocals, saxophone or everything else). It is not limited to daisy chaining but lets you connect effects in parallel too (dual amping). This is all based on open source software and can be used by anyone for free.
 
-The MOD devices that you can buy (for example the MOD dwarf) do all of that in a small form factor and pretty box based on fast ARM processors and decent audio I/O equipment.
+The [MOD dwarf](https://mod.audio/dwarf/) that you can buy here https://www.thomann.de/intl/mod_dwarf.htm does all of that in a small form factor and pretty box based on fast ARM processors and decent audio I/O equipment.
 
-However it is possible to use the same software on your PC. You can do this for every day use or just to test things before buying a MOD.
-It is however (as far as I know) not possible to use the MOD store to buy additional plugins/effects provided by the MDO community and the MOD team.
+However it is possible to use the same software on your PC with some work. You can do this for every day use or just to test things before buying a MOD.
+This way however it is not possible (as far as I know) to use the MOD store to buy additional plugins/effects provided by the MDO community and the MOD team.
 
 # Description of the used components
 
@@ -39,13 +39,18 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
     The new audio sub system that ships with newer Ubuntu releases since lunar lobster (23.04).
     With pipewire-jack there is an implementation of a jack server (that is, it is not jackd nor does it use or need jackd).
 
+* JACK
+
+    The audio backend API/server that the MOD-host uses to connect lv2 plugins with each other. Pipewire implements the JACK protocol thus eliminating the need for a JACK server.
+
 # Base setup of operating system
+
 1. Install Ubuntu
      1. Use "Install third-party software for graphics and Wi-Fi hardware"
      2. Use "Download and install support for additional media formats
-     3. After installing when asked for sending system information select not to send this, in order to not cause unneccessary network trafic when you are recording in the studio with MOD.
+     3. After installing when asked for sending system information select not to send this, in order to not cause unneccessary network trafic at the worst possible time on stage with your MOD.
      4. Consider setting your screen timeout to never in order to not have your screen go blank when jamming with your friends with MOD.
-     5. Take some time to think about software updates and when to apply them, since - again - you don't want those to mess with you when you are live on stage with MOD.
+     5. Take some time to think about how and when to apply software updates to your box, since - again - you don't want those to mess with you when you are live on stage with MOD.
 2. Install Ubuntu studio and its components
 
     As of [the documentation](https://ubuntustudio.org/ubuntu-studio-installer/) Ubuntu studio components can be installed by starting the launcher (I suppose windows key) and the ubuntu studio installer from there but that did not work for me as the ubuntustudio-installer was not installed out of the box. Instead do the following:
@@ -64,19 +69,17 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
 
 3. Performance tweaks
 
-    sudo gedit /etc/default/grub
-    GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=off mitigations=off
-    sudo update-grub
+    You can set preempting to full to make your box more realtime compatible at the cost of throughput. This is done by editing the file `/etc/default/grub` and editing the line with `GRUB_CMDLINE_LINUX_DEFAULT` to `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=off`. If you have performance troubles and are not using the box for anything else other than audio you can turn off security mitigations for intel processors. From a security standpoint this is NOT A GOOD IDEA: `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=off mitigations=off`
 
-    https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Performance-tuning
-   
+    After that you do a `sudo update-grub`
+
 # Install/Build MOD
 
 1. Install needed software
 
         sudo apt-get install git -y
     
-    As of [here](https://github.com/moddevices/mod-host), [here](https://github.com/moddevices/mod-ui) and [here](https://github.com/moddevices/mod-plugin-builder) install the following (be sure to copy the complete long line):
+    As of [here](https://github.com/moddevices/mod-host), [here](https://github.com/moddevices/mod-ui) and [here](https://github.com/moddevices/mod-plugin-builder) install the following (be sure to copy the complete very very long line):
     
         sudo apt install git libreadline-dev liblilv-dev lilv-utils libfftw3-dev libjack-jackd2-dev virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex gawk gperf gzip help2man nano perl patch tar texinfo unzip automake binutils build-essential cpio libtool libncurses-dev pkg-config python-is-python3 libtool-bin -y
     
@@ -92,7 +95,7 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
         git clone --recurse-submodules https://github.com/moddevices/mod-plugin-builder.git
         git clone https://github.com/rominator1983/completeModInstallationManual.git
 
-3. Build all components. I have linked the things to get you to the detailed build instructions.
+3. Build all components. I have linked the things to get you to the detailed build instructions if needed.
      1. https://github.com/moddevices/mod-host
     
                cd ~/mod/mod-host
@@ -114,7 +117,7 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
                # this is also needed to run mod-ui later
                pip install pycryptodomex
                
-           This is stated in requirements.txt as needed for python 3.10 (and obviously later).
+           This is stated in requirements.txt as needed for python 3.10 (and obviously later too).
                
                pyMinorVersion="$(python3 -c 'import sys; print(sys.version_info[:][1])')"
                sed -i -e 's/collections.MutableMapping/collections.abc.MutableMapping/' modui-env/lib/python3."$pyMinorVersion"/site-packages/tornado/httputil.py
@@ -147,6 +150,8 @@ It is however (as far as I know) not possible to use the MOD store to buy additi
     After that is done you can check the build output of the different plugin packages in `build{package}.log`. In the end do the following to copy the plugins to your computers lv2 directory to enjoy more than 1000 effects at you fingertips:
         
         `sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/`
+
+   Note: This copies not only all lv2 plugins with abeautiful user interface but also a lot of plugins that only have a basic ui that is provided by MOD-UI.
 
 # Pipewire/Jack config
     
