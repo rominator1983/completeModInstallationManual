@@ -157,7 +157,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
     
 The following settings in `/usr/share/pipewire/pipewire.conf` have to be made since 48000 is also the only used frequency for neural networks amp simulations (See further below): 
     
-    default.clock.allowed-rates = `[ 48000, 96000]`
+    default.clock.allowed-rates = [ 48000, 96000 ]
     default.clock.rate = 48000
         
 MOD-host makes some assumptions on how jack things are named that are not true for the pipewire implementation of jack.
