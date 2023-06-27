@@ -149,7 +149,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
     
     After that is done you can check the build output of the different plugin packages in `build{package}.log`. In the end do the following to copy the plugins to your computers lv2 directory to enjoy more than 1000 effects at you fingertips:
         
-        `sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/`
+        sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/
 
    Note: This copies not only all lv2 plugins with abeautiful user interface but also a lot of plugins that only have a basic ui that is provided by MOD-UI.
 
