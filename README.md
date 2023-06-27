@@ -69,7 +69,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
 3. Performance tweaks
 
-    You can set preempting to full to make your box more realtime compatible at the cost of throughput. This is done by editing the file `/etc/default/grub` and editing the line with `GRUB_CMDLINE_LINUX_DEFAULT` to `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=off`. If you have performance troubles and are not using the box for anything else other than audio you can turn off security mitigations for intel processors. From a security standpoint this is NOT A GOOD IDEA: `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=off mitigations=off`
+    You can set pre-empting to full to make your box more realtime compatible at the cost of throughput. This is done by editing the file `/etc/default/grub` and editing the line with `GRUB_CMDLINE_LINUX_DEFAULT` to `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=full`. If you have performance troubles and are not using the box for anything else other than audio you can turn off security mitigations for intel processors. From a security standpoint this is NOT A GOOD IDEA: `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=full mitigations=off`
 
     After that you do a `sudo update-grub`
 
