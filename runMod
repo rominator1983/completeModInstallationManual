@@ -1,12 +1,13 @@
 #!/bin/bash
 ./killMod
 
+# TODO: Change to your audio device. Get this by changing the default sink/input in the ubuntu ui and then then `pactl get-default-sink` and `pactl get-default-source`
 #pactl set-default-sink "alsa_output.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
 #pactl set-default-source "alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
 sleep 2
 
-#pw-metadata -n settings 0 clock.force-rate 96000
-#pw-metadata -n settings 0 clock.force-quantum 512
+pw-metadata -n settings 0 clock.force-rate 48000
+pw-metadata -n settings 0 clock.force-quantum 64
 
 sleep 1
 
