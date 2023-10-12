@@ -91,7 +91,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
     
 2. Clone all needed repositories
 
-    Open a console and paste this the following lines to checkout all the needed source code
+    Open a console and paste the following lines to checkout all the needed source code
 
         cd ~
         mkdir mod
