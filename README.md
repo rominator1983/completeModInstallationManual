@@ -176,6 +176,11 @@ So the following settings in `/usr/share/pipewire/jack.conf` have to be made:
     jack.default-as-system = true
     # this solves some issue with crackles stemming from sample rate conversion.
     node.rate = 1/48000
+
+When doing pw-top one node is left that runs at 44/16. Edit `/usr/share/pipewire/client-rt.conf`:
+
+    alsa.rate = [ 48000 ]
+    alsa.format = [ S24 ]
         
 To check your current sample rate and buffer settings do `pw-metadata -m -n settings`
 To check the sample rate, buffer (aka 'quantum' in pipewire) and sample size/format of running applications run `pw-top`
