@@ -51,6 +51,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
      3. After installing when asked for sending system information select not to send this, in order to not cause unneccessary network trafic at the worst possible time on stage with your MOD.
      4. Consider setting your screen timeout to never in order to not have your screen go blank when jamming with your friends with MOD.
      5. Take some time to think about how and when to apply software updates to your box, since - again - you don't want those to mess with you when you are live on stage with MOD.
+
 2. Install Ubuntu studio and its components
 
     As of [the documentation](https://ubuntustudio.org/ubuntu-studio-installer/) Ubuntu studio components can be installed by starting the launcher (I suppose windows key) and the ubuntu studio installer from there but that did not work for me as the ubuntustudio-installer was not installed out of the box. Instead do the following:
@@ -73,11 +74,15 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
     `sudoa apt-get update && sudo apt-get upgrade`
 
-5. Performance tweaks
+4. Performance tweaks
 
     You can set pre-empting to full to make your box more realtime compatible at the cost of throughput. This is done by editing the file `/etc/default/grub` and editing the line with `GRUB_CMDLINE_LINUX_DEFAULT` to `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=full`. If you have performance troubles and are not using the box for anything else other than audio you can turn off security mitigations for intel processors. From a security standpoint this is NOT A GOOD IDEA: `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=full mitigations=off`
 
     After that you do a `sudo update-grub`
+
+5. Deactivate Alerts
+
+   In the sound settings set "Alert sounds" to "None".
 
 # Install/Build MOD
 
