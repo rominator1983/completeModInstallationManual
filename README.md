@@ -71,7 +71,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
     `sudo add-apt-repository ppa:pipewire-debian/pipewire-upstream`
 
-    `sudoa apt-get update && apt-get upgrade`
+    `sudoa apt-get update && sudo apt-get upgrade`
 
 5. Performance tweaks
 
