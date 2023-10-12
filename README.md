@@ -204,9 +204,6 @@ I overcame this by setting the following things in `/usr/share/wireplumber/main.
     # Try different (higher) values if this does not work.
     ["api.alsa.headaroom"] = 128
     ["api.alsa.period-size"] = 128
-    # when doing pw-top you can see a node alsa_playback.fluidsynth with 44kHz/16 Bit. With the following two settings this is changed so no resampling occurs.
-    ["audio.rate"] = 48000
-    ["audio.format"] = S24LE
     # This was not needed for me but might be for you
     ["api.alsa.disable-mmap"] = false
 
