@@ -142,7 +142,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
     The [documentation](https://github.com/moddevices/mod-plugin-builder) tells you how to build individual plugin packages.
     This is hard and not so much fun. [mod-live-usb](https://github.com/moddevices/mod-live-usb) could be used to build everything at once but aims at a different solution by using a USB stick to run MOD from.
-    So I made up (this little script)[https://github.com/rominator1983/completeModInstallationManual/blob/main/preparePluginCompilation] to allow you to build all plugin packages at once.
+    So I made up [this little script](https://github.com/rominator1983/completeModInstallationManual/blob/main/preparePluginCompilation) to allow you to build all plugin packages at once.
 
         # Needed for SSH connection to github.com which is done by some of the plugin builds
         ssh-keyscan github.com >> ~/.ssh/known_hosts
