@@ -62,9 +62,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
     * linux-lowlatency
     * ubuntustudio-lowlatency-settings
     * ubuntustudio-performance-tweaks
-    * ubuntustudio-pipewire-config
     * ubuntustudio-audio
-    * ubuntustudio-menu
     
     This will take some minutes. After that better restart the machine and do not just logout/login as the installer tells you.
 
