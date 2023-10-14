@@ -71,6 +71,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 3. Use latest pipewire versionwith PPA
 
     `sudo add-apt-repository ppa:pipewire-debian/pipewire-upstream`
+   
     `sudo add-apt-repository ppa:pipewire-debian/wireplumber-upstream`
 
     `sudoa apt-get update && sudo apt-get upgrade`
