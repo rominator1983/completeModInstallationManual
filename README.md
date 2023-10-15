@@ -103,7 +103,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
         cd mod
         git clone --recurse-submodules https://github.com/moddevices/mod-host.git
         git clone --recurse-submodules https://github.com/moddevices/mod-ui.git
-        git clone --recurse-submodules https://github.com/moddevices/mod-plugin-builder.git
+        git clone --recurse-submodules https://github.com/rominator1983/mod-plugin-builder.git
         git clone https://github.com/rominator1983/completeModInstallationManual.git
 
 3. Build all components. I have linked the things to get you to the detailed build instructions if needed.
