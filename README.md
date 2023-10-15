@@ -141,7 +141,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
                cd ~/mod/mod-plugin-builder
                # This will take hours on ANY machine
-               ./bootstrap.sh x86_64
+               ./bootstrap.sh x86_64 > bootstrap.log 2>&1
 
 4. Build all plugins from mod-plugin-builder
 
