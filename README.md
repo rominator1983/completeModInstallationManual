@@ -90,11 +90,19 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
         sudo apt-get install git -y
     
-    As of [here](https://github.com/moddevices/mod-host), [here](https://github.com/moddevices/mod-ui) and [here](https://github.com/moddevices/mod-plugin-builder) install the following (be sure to copy the complete very very long line):
+    As of [here](https://github.com/moddevices/mod-host), [here](https://github.com/moddevices/mod-ui) and [here](https://github.com/moddevices/mod-plugin-builder) install the following:
     
-        sudo apt install git libreadline-dev liblilv-dev lilv-utils libfftw3-dev libjack-jackd2-dev virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev zlib1g-dev acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex gawk gperf gzip help2man nano perl patch tar texinfo unzip automake binutils build-essential cpio libtool libncurses-dev pkg-config python-is-python3 libtool-bin libmtdev-dev libsqlclient-dev libsqlitecpp-dev libpulse-dev libx11-dev libfontconfig1-dev libc++-dev glibc-source linux-libc-dev -y
-    
-2. Clone all needed repositories
+        sudo apt install git libreadline-dev liblilv-dev lilv-utils libfftw3-dev libjack-jackd2-dev virtualenv \
+           python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev \
+           zlib1g-dev acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex gawk gperf gzip help2man \
+           nano perl patch tar texinfo unzip automake binutils build-essential cpio libtool libncurses-dev pkg-config \
+           python-is-python3 libtool-bin libmtdev-dev libsqlclient-dev libsqlitecpp-dev libpulse-dev libx11-dev \
+           libfontconfig1-dev libc++-dev glibc-source linux-libc-dev
+           automake binutils build-essential cpio libtool libncurses-dev pkg-config python-is-python3 \
+           libtool-bin libmtdev-dev libsqlclient-dev libpulse-dev libx11-dev libfontconfig1-dev \
+           libc++-dev glibc-source linux-libc-dev -y
+       
+3. Clone all needed repositories
 
     Open a console and paste the following lines to checkout all the needed source code
 
@@ -106,7 +114,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
         git clone --recurse-submodules https://github.com/rominator1983/mod-plugin-builder.git
         git clone https://github.com/rominator1983/completeModInstallationManual.git
 
-3. Build all components. I have linked the things to get you to the detailed build instructions if needed.
+4. Build all components. I have linked the things to get you to the detailed build instructions if needed.
      1. https://github.com/moddevices/mod-host
     
                cd ~/mod/mod-host
@@ -143,7 +151,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
                # This will take hours on ANY machine
                ./bootstrap.sh x86_64 > bootstrap.log 2>&1
 
-4. Build all plugins from mod-plugin-builder
+5. Build all plugins from mod-plugin-builder
 
     The [documentation](https://github.com/moddevices/mod-plugin-builder) tells you how to build individual plugin packages.
     This is hard and not so much fun. [mod-live-usb](https://github.com/moddevices/mod-live-usb) could be used to build everything at once but aims at a different solution by using a USB stick to run MOD from.
