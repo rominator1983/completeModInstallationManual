@@ -1,3 +1,5 @@
+# WIP: At the moment an update introduced audio crackles to ubuntu 23.04 and mod-plugin-builder wont build with Ubuntu 23.10 because of https://github.com/moddevices/mod-plugin-builder/issues/175. This manual will be converted to Pop!OS https://pop.system76.com/ since everything seems to be working out of the box there even without config file adaptions.
+
 # completeModInstallationManual
 
 This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu (developed with lunar lobster 23.04) including pipewire.
