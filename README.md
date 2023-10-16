@@ -162,7 +162,6 @@ This way however it is not possible (as far as I know) to use the MOD store to b
         # Needed for SSH connection to github.com which is done by some of the plugin builds
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         cd ~/mod/mod-plugin-builder
-        chmod 777 ~/mod/completeModInstallationManual/preparePluginCompilation
         ~/mod/completeModInstallationManual/preparePluginCompilation
         
         # Again this will take quite a long time to finish
@@ -237,14 +236,12 @@ I overcame this by setting the following things in `/usr/share/wireplumber/main.
 
 4. Run MOD
 
-        chmod 777 ~/mod/completeModInstallationManual/runMod
         ~/mod/completeModInstallationManual/runMod
         
     You should now see firefox opening with the main MOD window. There are several tutorials on what to do from here so I won't cover those in detail.
         
 5. Stop MOD
 
-        chmod 777 ~/mod/completeModInstallationManual/killMod
         ~/mod/completeModInstallationManual/killMod
 
 # Polish your sound and user directories

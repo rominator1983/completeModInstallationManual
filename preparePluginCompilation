@@ -2,6 +2,7 @@
 cd ~/mod/mod-plugin-builder/plugins/package
 echo "#"'!'"/bin/bash" > ../../compileAllPlugins
 for d in *; do
+  echo "echo Building $d" >> ../../compileAllPlugins
   echo "./build x86_64 $d > build$d.log 2>&1" >> ../../compileAllPlugins
 done
 cd ~/mod/mod-plugin-builder
