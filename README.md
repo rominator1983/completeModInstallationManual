@@ -102,7 +102,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
            libfontconfig1-dev libc++-dev glibc-source linux-libc-dev
            automake binutils build-essential cpio libtool libncurses-dev pkg-config python-is-python3 \
            libtool-bin libmtdev-dev libsqlclient-dev libpulse-dev libx11-dev libfontconfig1-dev \
-           libc++-dev glibc-source linux-libc-dev -y
+           libc++-dev glibc-source linux-libc-dev liblua5.1-0-dev -y
        
 3. Clone all needed repositories
 
