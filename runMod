@@ -1,15 +1,25 @@
 #!/bin/bash
-./killMod
+killall mod-ui
+killall mod-host
+killall jackd
 
-# TODO: Change to your audio device. Get this by changing the default sink/input in the ubuntu ui and then then `pactl get-default-sink` and `pactl get-default-source`
+# PW: Change to your audio device. Get this by changing the default sink/input in the ubuntu ui and then then `pactl get-default-sink` and `pactl get-default-source`
 #pactl set-default-sink "alsa_output.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
 #pactl set-default-source "alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
+
+jackd -R -P 80 -d alsa -d hw:UR22,0 -r 48000 -p 64 -n 2 -X seq &
+#jackd -R -P 80 -d alsa -d hw:UR22mkII,0 -r 96000 -p 512 -n 3 -X seq &
+
 sleep 2
 
-pw-metadata -n settings 0 clock.force-rate 48000
-pw-metadata -n settings 0 clock.min-quantum 256
-pw-metadata -n settings 0 clock.max-quantum 256
-pw-metadata -n settings 0 clock.force-quantum 256
+pactl load-module module-jack-sink
+pactl load-module module-jack-source
+
+# PW: 
+#pw-metadata -n settings 0 clock.force-rate 48000
+#pw-metadata -n settings 0 clock.min-quantum 256
+#pw-metadata -n settings 0 clock.max-quantum 256
+#pw-metadata -n settings 0 clock.force-quantum 256
 
 sleep 1
 
