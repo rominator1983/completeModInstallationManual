@@ -68,14 +68,6 @@ This way however it is not possible (as far as I know) to use the MOD store to b
     
     This will take some minutes. After that better restart the machine and do not just logout/login as the installer tells you.
 
-3. Use latest pipewire versionwith PPA
-
-    `sudo add-apt-repository ppa:pipewire-debian/pipewire-upstream`
-   
-    `sudo add-apt-repository ppa:pipewire-debian/wireplumber-upstream`
-
-    `sudoa apt-get update && sudo apt-get upgrade`
-
 5. Performance tweaks
 
     You can set pre-empting to full to make your box more realtime compatible at the cost of throughput. This is done by editing the file `/etc/default/grub` and editing the line with `GRUB_CMDLINE_LINUX_DEFAULT` to `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=full nohz=off`. If you have performance troubles and are not using the box for anything else other than audio you can turn off security mitigations for intel processors. From a security standpoint this is NOT A GOOD IDEA: `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=full mitigations=off`
