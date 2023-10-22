@@ -21,10 +21,12 @@ git clone --recurse-submodules https://github.com/moddevices/mod-ui.git
 git clone --recurse-submodules https://github.com/rominator1983/mod-plugin-builder.git
 git clone https://github.com/rominator1983/completeModInstallationManual.git
 
+# see https://github.com/moddevices/mod-host
 cd ~/mod/mod-host
 make
 sudo make install
 
+# see https://github.com/moddevices/mod-ui
 cd ~/mod/mod-ui
                
 # this was sometimes needed to run mod-ui later. This is probably a ubuntu thing
@@ -41,6 +43,8 @@ pip install pycryptodomex
 pyMinorVersion="$(python3 -c 'import sys; print(sys.version_info[:][1])')"
 sed -i -e 's/collections.MutableMapping/collections.abc.MutableMapping/' modui-env/lib/python3."$pyMinorVersion"/site-packages/tornado/httputil.py
 make -C utils
+
+# see https://github.com/moddevices/mod-plugin-builder 
 
 echo "Starting bootstrap.sh"
 read
