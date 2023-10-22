@@ -7,7 +7,9 @@
 sleep 2
 
 pw-metadata -n settings 0 clock.force-rate 48000
-pw-metadata -n settings 0 clock.force-quantum 64
+pw-metadata -n settings 0 clock.min-quantum 256
+pw-metadata -n settings 0 clock.max-quantum 256
+pw-metadata -n settings 0 clock.force-quantum 256
 
 sleep 1
 
