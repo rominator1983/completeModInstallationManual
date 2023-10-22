@@ -80,11 +80,15 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
 # Install/Build MOD
 
+1. setup script
+        sudo apt-get install wget
+        wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/setup -O setupMod
+        chmod 777 setupMod
+        ./setupMod
+
 1. Install needed software
 
-        sudo apt-get install git -y
     
-    As of [here](https://github.com/moddevices/mod-host), [here](https://github.com/moddevices/mod-ui) and [here](https://github.com/moddevices/mod-plugin-builder) install the following:
     
         sudo apt install git libreadline-dev liblilv-dev lilv-utils libfftw3-dev libjack-jackd2-dev virtualenv \
            python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev \
