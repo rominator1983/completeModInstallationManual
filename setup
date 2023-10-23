@@ -33,6 +33,7 @@ git clone --recurse-submodules https://github.com/moddevices/mod-ui.git
 git clone --recurse-submodules https://github.com/rominator1983/mod-plugin-builder.git
 git clone https://github.com/rominator1983/completeModInstallationManual.git
 
+mkdir ~/mod-workdir
 mkdir ~/mod-workdir/user-files
 mkdir ~/mod-workdir/user-files/Audio\ Loops
 mkdir ~/mod-workdir/user-files/Audio\ Recordings
