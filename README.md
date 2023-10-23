@@ -1,5 +1,3 @@
-# WIP: At the moment an update introduced audio crackles to ubuntu 23.04 and mod-plugin-builder wont build with Ubuntu 23.10 because of https://github.com/moddevices/mod-plugin-builder/issues/175. This manual will be converted to Pop!OS https://pop.system76.com/ since everything seems to be working out of the box there even without config file adaptions.
-
 # completeModInstallationManual
 
 This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu (developed with lunar lobster 23.04) including pipewire.
@@ -11,7 +9,7 @@ Special thanks to @falkTX for making this all even remotely possible.
 # Disclaimer
 
 As this manual is published under the MIT license I cannot be held liable for any damage on any of your hardware or body parts (especially your ears) that result from using this manual (or not following it). Start MOD only when the volume is set to 0%.
-
+~/mod/mod-plugin-builder
 THIS IS NOT A JOKE. When running MOD carelessly with a laptop sound card with a built-in microphone and speakers there can be really unpleasant/deafening feedback noises.
 
 # What is MOD on your Linux PC
@@ -53,13 +51,16 @@ This way however it is not possible (as far as I know) to use the MOD store to b
      3. After installing when asked for sending system information select not to send this, in order to not cause unneccessary network trafic at the worst possible time on stage with your MOD.
      4. Consider setting your screen timeout to never in order to not have your screen go blank when jamming with your friends with MOD.
      5. Take some time to think about how and when to apply software updates to your box, since - again - you don't want those to mess with you when you are live on stage with MOD.
+     6. In the sound settings set "Alert sounds" to "None".
 
-2. Install Ubuntu studio and its components
+2. Setup script (this takes very long!)
 
-    As of [the documentation](https://ubuntustudio.org/ubuntu-studio-installer/) Ubuntu studio components can be installed by starting the launcher (I suppose windows key) and the ubuntu studio installer from there but that did not work for me as the ubuntustudio-installer was not installed out of the box. Instead do the following:
-        
-        sudo apt-get install ubuntustudio-installer -y
-    
+    sudo apt-get install wget
+    wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/setup -O setupMod
+    chmod 777 setupMod
+    ./setupMod
+
+3. Install Ubuntu studio and its components    
     Then start the Ubuntu studio installer by pressing the windows key and searching for "studio" and install the following components
     * linux-lowlatency
     * ubuntustudio-lowlatency-settings
@@ -68,18 +69,7 @@ This way however it is not possible (as far as I know) to use the MOD store to b
     
     This will take some minutes. After that better restart the machine and do not just logout/login as the installer tells you.
 
-5. Performance tweaks
-
-    You can set pre-empting to full to make your box more realtime compatible at the cost of throughput. This is done by editing the file `/etc/default/grub` and editing the line with `GRUB_CMDLINE_LINUX_DEFAULT` to `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=full nohz=off`. If you have performance troubles and are not using the box for anything else other than audio you can turn off security mitigations for intel processors. From a security standpoint this is NOT A GOOD IDEA: `GRUB_CMDLINE_LINUX_DEFAULT ="quiet splash preempt=full mitigations=off`
-
-    After that you do a `sudo update-grub`
-
-6. Deactivate Alerts
-
-   In the sound settings set "Alert sounds" to "None".
-
-# Install/Build MOD
-
+# Install/Build MOD               
 1. setup script
 
 This also installs some performance tweaks to the grub bootloader.
@@ -88,63 +78,10 @@ This also installs some performance tweaks to the grub bootloader.
         wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/setup -O setupMod
         chmod 777 setupMod
         ./setupMod
-
-2. Build all plugins from mod-plugin-builder
-
-    The [documentation](https://github.com/moddevices/mod-plugin-builder) tells you how to build individual plugin packages.
-    This is hard and not so much fun. [mod-live-usb](https://github.com/moddevices/mod-live-usb) could be used to build everything at once but aims at a different solution by using a USB stick to run MOD from.
-    So I made up [this little script](https://github.com/rominator1983/completeModInstallationManual/blob/main/preparePluginCompilation) to allow you to build all plugin packages at once.
-
-        # Needed for SSH connection to github.com which is done by some of the plugin builds
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-        cd ~/mod/mod-plugin-builder
-        ~/mod/completeModInstallationManual/preparePluginCompilation
         
-        # Again this will take quite a long time to finish
-        ./compileAllPlugins
-    
-    After that is done you can check the build output of the different plugin packages in `build{package}.log`. In the end do the following to copy the plugins to your computers lv2 directory to enjoy more than 1000 effects at you fingertips:
-        
-        sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/
+2. Edit `~/mod/completeModInstallationManual/runMod` to set the buffer size and numbe of periods of jack. (256 and 3 in the following example)
 
-   Note: This copies not only all lv2 plugins with abeautiful user interface but also a lot of plugins that only have a basic ui that is provided by MOD-UI.
-
-# Pipewire/Jack config
-    
-The following settings in `/usr/share/pipewire/pipewire.conf` have to be made since 48000 is also the only used frequency for neural networks amp simulations (See further below): 
-    
-    default.clock.allowed-rates = [ 48000, 96000 ]
-    default.clock.rate = 48000
-        
-MOD-host makes some assumptions on how jack things are named that are not true for the pipewire implementation of jack.
-So the following settings in `/usr/share/pipewire/jack.conf` have to be made:
-    
-    jack.short-name = true
-    jack.filter-name = true
-    jack.filter-char = " "
-    jack.self-connect-mode = allow
-    jack.default-as-system = true
-    # this solves some issue with crackles stemming from sample rate conversion.
-    node.rate = 1/48000
-
-When doing pw-top one node is left that runs at 44/16. Edit `/usr/share/pipewire/client-rt.conf`:
-
-    alsa.rate = [ 48000 ]
-    alsa.format = [ S24 ]
-        
-To check your current sample rate and buffer settings do `pw-metadata -m -n settings`
-To check the sample rate, buffer (aka 'quantum' in pipewire) and sample size/format of running applications run `pw-top`
-
-When running MOD all sample rates should be the same (48000) otherwise you will hear some faint but disturbing crackles.
-
-Edit `~/mod/completeModInstallationManual/runMod` to set the sample rate and buffer size (aka 'quantum' in pipewire) too before starting MOD. Start with a higher quantum (512) and reduce until things stop working.
-
-    pw-metadata -n settings 0 clock.force-rate 48000
-    pw-metadata -n settings 0 clock.min-quantum 512
-    pw-metadata -n settings 0 clock.max-quantum 512
-    pw-metadata -n settings 0 clock.force-quantum 512
-
-If you experience issues consult [the documentation](https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Config-JACK?version_id=336a4cac3eaa9cdbf20d894e815336da3c34c3d6)
+    jackd -R -P 80 -d alsa -d hw:UR22,0 -r 48000 -p 256 -n 4 -X seq &
 
 # Crackles on USB device
 
@@ -186,28 +123,7 @@ Get rid of a dull sound by using impulse responses and neural networks.
 When playing around with MOD for the first time with your guitar you might get a sense of a dull sound when just using distortion efffects and reverb and stuff when you are using MOD with headphones or PA (that is without a guitar/bass amplifier and case or an amplifier combo).
 This might be because you are missing out on amp and cabinet simulation which you do need in the effect chain to get a decent sound.
 In order to let MOD shine you normally need a decent amp simulation in your effect chain followed by a cabinet simulation jsut as you would set up when using a real amp and cabinet. I prefer to use neural network amp simulations and impulse responses for cabinet simulations.
-    
-`~/mod/completeModInstallationManual/runMod` sets the variable `MOD_USER_FILES_DIR` to `~/mod-workdir/user-files` (instead of the default `/data/user-files`).
-So do this:
-    
-    mkdir ~/mod-workdir/user-files
-    mkdir ~/mod-workdir/user-files/Audio\ Loops
-    mkdir ~/mod-workdir/user-files/Audio\ Recordings
-    mkdir ~/mod-workdir/user-files/Audio\ Samples
-    mkdir ~/mod-workdir/user-files/Audio\ Tracks
-    mkdir ~/mod-workdir/user-files/Speaker\ Cabinets\ IRs
-    mkdir ~/mod-workdir/user-files/Hydrogen\ Drumkits
-    mkdir ~/mod-workdir/user-files/Reverb\ IRs
-    mkdir ~/mod-workdir/user-files/MIDI\ Clips
-    mkdir ~/mod-workdir/user-files/MIDI\ Songs
-    mkdir ~/mod-workdir/user-files/SF2\ Instruments
-    mkdir ~/mod-workdir/user-files/SFZ\ Instruments
-    mkdir ~/mod-workdir/user-files/Aida\ DSP\ Models
-    mkdir ~/mod-workdir/user-files/NAM\ Models
         
-    # copy misplaced neural network definitions to user files directory
-    cp /usr/lib/lv2/rt-neural-generic.lv2/models/deer\ ink\ studios/* ~/mod-workdir/user-files/Speaker\ Cabinets\ IRs
-    
 Then get some impulse responses from [valhalir](https://valhallir.at/) or [anywhere on the internet](https://producelikeapro.com/blog/best-guitar-impulse-responses/) and place them `~/mod-workdir/user-files/Speaker Cabinets IRs`.
     
 Then get more amp models from [the MOD community](https://forum.mod.audio/t/list-of-shared-models/9631) and place them in `~/mod-workdir/user-files/Aida DSP Models`.
@@ -220,28 +136,7 @@ If you experience performance issues follow the documentation [here](https://git
 > If you are having trouble running a "standard" model, try looking for "feather" (the least expensive) models. You can find a list of ["feather"-tagged models on ToneHunt](https://tonehunt.org/?tags=feather-mdl). Note that tagging models is up to the submitter, so not all "feather" models are tagged as such - you should be able to find more if you dig around.
     
 # Considerations for starting MOD
-
-1. Device selection
     
-    Up to this point you have been setting up MOD to run using pipewires jack server implementation.
-    This means that MOD is using your systems selected audio device with pipewire. Therefor you can also play a youtube video or do some ardour magic when running MOD.
-    When you are using a notebook like me you are probably using an external USB sound card for better latency and sound quality and you might want to use this device per default when running MOD without thinking about it or manually changing devices in the Ubuntu settings. This is especially true considering the ear deafing feedback that might occurr when sitting in front of a laptop that I mentioned several times.
-    To choose the right sound card every time when starting MOD you can change the sound card selection in the runMod script.
-    
-    At the moment it seems there is no convenient pipewire way of doing this as `wpctl` has the problem of changing IDs so the pulseaudio command line tools seem the way to go for whatever reason:
-
-        sudo apt install pulseaudio-utils -y
-        
-    To find out your desired audio input/output select the correct device in Ubuntu and then do
-
-        pactl get-default-sink
-        pactl get-default-source
-    
-    Copy the respective outputs of those statements and uncomment the corresponding lines in `~/mod/completeModInstallationManual/runMod` to look something like this:
-
-        pactl set-default-sink "alsa_output.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"
-        pactl set-default-source "alsa_input.usb-Yamaha_Corporation_Steinberg_UR22-00.analog-stereo"    
-    
-2. Default.json 
+1. Default.json 
 
     `~/mod/completeModInstallationManual/runMod` copies a simple/working effect setup (json) to `~/mod/mod-ui/data/last.json`. The reason for that is, that if something (an update) breaks an installed LV2 plugin that is in use in your last loaded effect chain, then MOD wont start and you have a hard time figuring out, what's wrong and how to fix it. Thus I have made a simple tuner config that is referenced in a json file that gets copied over before starting MOD. To leverage that, create your own simple default effect chain and copy `~/mod/mod-ui/data/last.json` to `~/mod/mod-ui/data/last.json.default`

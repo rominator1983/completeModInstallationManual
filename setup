@@ -1,17 +1,36 @@
 #!/bin/bash
 
+sudo echo "GRUB_CMDLINE_LINUX_DEFAULT=""quiet splash preempt=full nohz=off mitigations=off""" > /etc/default/grub.d/perf.cfg
+sudo update-grup
+
 sudo apt-get update && sudo apt-get upgrade
 
-# As of [here](https://github.com/moddevices/mod-host), [here](https://github.com/moddevices/mod-ui) and [here](https://github.com/moddevices/mod-plugin-builder) install the following:
-sudo apt install ubuntustudio-installer git libreadline-dev liblilv-dev lilv-utils libfftw3-dev libjack-jackd2-dev virtualenv \
-    python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev liblilv-dev libjpeg-dev \
-    zlib1g-dev acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex gawk gperf gzip help2man \
-    nano perl patch tar texinfo unzip automake binutils build-essential cpio libtool libncurses-dev pkg-config \
-    python-is-python3 libtool-bin libmtdev-dev libsqlclient-dev libsqlitecpp-dev libpulse-dev libx11-dev \
-    libfontconfig1-dev libc++-dev glibc-source linux-libc-dev \
+# Remove pipewire. see https://lowtechlinux.com/2022/04/26/go-full-pipewire-on-ubuntu-22-04-and-all-family-derivatives/
+sudo apt remove pipewire-audio-client-libraries libspa-0.2-bluetooth libspa-0.2-jack -y
+sudo apt install pipewire-media-session -y
+systemctl --user --now enable pipewire-media-session
+rm ~/.config/systemd/user/pipewire-session-manager.service
+systemctl --user --now enable pipewire-media-session
+systemctl --user restart pulseaudio
+sudo systemctl --global --now disable pipewire-pulse.service pipewire-pulse.socket 
+systemctl --user --now reenable pulseaudio.service pulseaudio.socket
+systemctl --user restart pulseaudio
+
+# see https://github.com/moddevices/mod-host, https://github.com/moddevices/mod-ui and https://github.com/rominator1983/mod-plugin-builder
+
+sudo apt-get install jackd pulseaudio ubuntustudio-installer git libreadline-dev liblilv-dev lilv-utils libfftw3-dev \
+    libjack-jackd2-dev virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev \
+    liblilv-dev libjpeg-dev zlib1g-dev acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex \
+    gawk gperf gzip help2man nano perl patch tar texinfo unzip automake binutils build-essential cpio libtool \
+    libncurses-dev pkg-config python-is-python3 libtool-bin libmtdev-dev libsqlclient-dev libsqlitecpp-dev \
+    libpulse-dev libx11-dev libfontconfig1-dev libc++-dev glibc-source linux-libc-dev \
     automake binutils build-essential cpio libtool libncurses-dev pkg-config python-is-python3 \
     libtool-bin libmtdev-dev libsqlclient-dev libpulse-dev libx11-dev libfontconfig1-dev \
     libc++-dev glibc-source linux-libc-dev liblua5.1-0-dev meson mc -y
+
+sudo apt-get autoremove -y
+
+sudo apt-get update && sudo apt-get upgrade
 
 cd ~
 mkdir mod
@@ -21,12 +40,25 @@ git clone --recurse-submodules https://github.com/moddevices/mod-ui.git
 git clone --recurse-submodules https://github.com/rominator1983/mod-plugin-builder.git
 git clone https://github.com/rominator1983/completeModInstallationManual.git
 
-# see https://github.com/moddevices/mod-host
+mkdir ~/mod-workdir/user-files
+mkdir ~/mod-workdir/user-files/Audio\ Loops
+mkdir ~/mod-workdir/user-files/Audio\ Recordings
+mkdir ~/mod-workdir/user-files/Audio\ Samples
+mkdir ~/mod-workdir/user-files/Audio\ Tracks
+mkdir ~/mod-workdir/user-files/Speaker\ Cabinets\ IRs
+mkdir ~/mod-workdir/user-files/Hydrogen\ Drumkits
+mkdir ~/mod-workdir/user-files/Reverb\ IRs
+mkdir ~/mod-workdir/user-files/MIDI\ Clips
+mkdir ~/mod-workdir/user-files/MIDI\ Songs
+mkdir ~/mod-workdir/user-files/SF2\ Instruments
+mkdir ~/mod-workdir/user-files/SFZ\ Instruments
+mkdir ~/mod-workdir/user-files/Aida\ DSP\ Models
+mkdir ~/mod-workdir/user-files/NAM\ Models
+
 cd ~/mod/mod-host
 make
 sudo make install
 
-# see https://github.com/moddevices/mod-ui
 cd ~/mod/mod-ui
                
 # this was sometimes needed to run mod-ui later. This is probably a ubuntu thing
@@ -44,10 +76,24 @@ pyMinorVersion="$(python3 -c 'import sys; print(sys.version_info[:][1])')"
 sed -i -e 's/collections.MutableMapping/collections.abc.MutableMapping/' modui-env/lib/python3."$pyMinorVersion"/site-packages/tornado/httputil.py
 make -C utils
 
-# see https://github.com/moddevices/mod-plugin-builder 
-
 echo "Starting bootstrap.sh"
 read
 cd ~/mod/mod-plugin-builder
 # This will take hours on ANY machine
 ./bootstrap.sh x86_64 > bootstrap.log 2>&1
+
+# compile plugins. see https://github.com/moddevices/mod-plugin-builder
+cd ~/mod/mod-plugin-builder/plugins/package
+echo "#"'!'"/bin/bash" > ../../compileAllPlugins
+for d in *; do
+  echo "echo Building $d" >> ../../compileAllPlugins
+  echo "./build x86_64 $d > build$d.log 2>&1" >> ../../compileAllPlugins
+done
+cd ~/mod/mod-plugin-builder
+chmod 777 compileAllPlugins
+./compileAllPlugins
+
+sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/
+
+# copy misplaced neural network definitions to user files directory
+cp /usr/lib/lv2/rt-neural-generic.lv2/models/deer\ ink\ studios/* ~/mod-workdir/user-files/Speaker\ Cabinets\ IRs
