@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo echo "GRUB_CMDLINE_LINUX_DEFAULT=""quiet splash preempt=full nohz=off mitigations=off""" > /etc/default/grub.d/perf.cfg
+sudo sh -c 'echo "GRUB_CMDLINE_LINUX_DEFAULT=""quiet splash preempt=full nohz=off mitigations=off""" > /etc/default/grub.d/perf.cfg'
 sudo update-grup
 
 sudo apt-get update && sudo apt-get upgrade
