@@ -83,22 +83,6 @@ This also installs some performance tweaks to the grub bootloader.
 
     jackd -R -P 80 -d alsa -d hw:UR22,0 -r 48000 -p 256 -n 4 -X seq &
 
-# Crackles on USB device
-
-I use a Steinberg audio interface that is capable of very short latency. Without the proper audio settings this left me with very faint but audible and annoying crackles.
-
-I overcame this by setting the following things in `/usr/share/wireplumber/main.lua.d/50-alsa-config.lua`
-
-    ["priority.driver"] = 1200,
-    ["priority.session"] = 1200,
-    ["node.pause-on-idle"] = false,
-
-    # Try different (higher) values if this does not work.
-    ["api.alsa.headaroom"] = 128
-    ["api.alsa.period-size"] = 128
-    # This was not needed for me but might be for you
-    ["api.alsa.disable-mmap"] = false
-
 # Start Mod for the first time
 
 1. If you have multiple audio device, be sure to select the correct audio device via the Ubuntu settings
