@@ -55,10 +55,9 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
 2. Setup script (this takes very long!)
 
-    sudo apt-get install wget
-    wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/setup -O setupMod
-    chmod 777 setupMod
-    ./setupMod
+       wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/setup -O setupMod
+       chmod 777 setupMod
+       ./setupMod
 
 3. Install Ubuntu studio and its components    
     Then start the Ubuntu studio installer by pressing the windows key and searching for "studio" and install the following components
