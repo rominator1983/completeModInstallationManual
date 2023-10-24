@@ -6,13 +6,12 @@ sudo update-grub
 sudo apt-get update && sudo apt-get upgrade
 
 # Add jackd. see https://lowtechlinux.com/2022/04/26/go-full-pipewire-on-ubuntu-22-04-and-all-family-derivatives/
-sudo usermod -a -G audio $USER
 sudo apt-get install jackd -y
-systemctl --user mask pipewire-pulse.service pipewire-pulse.socket
+sudo usermod -a -G audio $USER
 
 # see https://github.com/moddevices/mod-host, https://github.com/moddevices/mod-ui and https://github.com/rominator1983/mod-plugin-builder
 
-sudo apt-get install ubuntustudio-installer git libreadline-dev liblilv-dev lilv-utils libfftw3-dev \
+sudo apt-get install jackd ubuntustudio-installer git libreadline-dev liblilv-dev lilv-utils libfftw3-dev \
     libjack-jackd2-dev virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev \
     liblilv-dev libjpeg-dev zlib1g-dev acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex \
     gawk gperf gzip help2man nano perl patch tar texinfo unzip automake binutils build-essential cpio libtool \
@@ -23,6 +22,8 @@ sudo apt-get install ubuntustudio-installer git libreadline-dev liblilv-dev lilv
     libc++-dev glibc-source linux-libc-dev liblua5.1-0-dev meson mc -y
 
 sudo apt-get autoremove -y
+
+sudo apt-get remove pipewire-jack -y
 
 sudo apt-get update && sudo apt-get upgrade
 
