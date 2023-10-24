@@ -5,8 +5,9 @@ sudo update-grub
 
 sudo apt-get update && sudo apt-get upgrade
 
-# Remove pipewire. see https://lowtechlinux.com/2022/04/26/go-full-pipewire-on-ubuntu-22-04-and-all-family-derivatives/
-sudo apt-get install jackd pulseaudio -y
+# Add jackd. see https://lowtechlinux.com/2022/04/26/go-full-pipewire-on-ubuntu-22-04-and-all-family-derivatives/
+sudo usermod -a -G audio $USER
+sudo apt-get install jackd -y
 systemctl --user mask pipewire-pulse.service pipewire-pulse.socket
 
 # see https://github.com/moddevices/mod-host, https://github.com/moddevices/mod-ui and https://github.com/rominator1983/mod-plugin-builder
