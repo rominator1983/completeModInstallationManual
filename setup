@@ -72,6 +72,7 @@ make -C utils
 
 echo "Starting bootstrap.sh"
 read
+mkdir ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 cd ~/mod/mod-plugin-builder
 # This will take hours on ANY machine
 ./bootstrap.sh x86_64 > bootstrap.log 2>&1
