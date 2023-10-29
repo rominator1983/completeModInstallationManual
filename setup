@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo sh -c 'echo "GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash preempt=full nohz=off mitigations=off\"" > /etc/default/grub.d/perf.cfg'
+sudo sh -c 'echo "GRUB_CMDLINE_LINUX_DEFAULT=\"\$GRUB_CMDLINE_LINUX_DEFAULT preempt=full nohz=off mitigations=off\"" > /etc/default/grub.d/perf.cfg'
 sudo update-grub
 
 sudo apt-get update && sudo apt-get upgrade
@@ -23,11 +23,8 @@ sudo apt-get install jackd ubuntustudio-installer git libreadline-dev liblilv-de
 
 sudo apt-get autoremove -y
 
-sudo apt-get remove pipewire-jack jackd -y
-
 # TODO: as of https://automatthias.wordpress.com/2021/12/27/running-a-standalone-jack-daemon-after-migration-to-pipewire/
 # TODO: set ["alsa.reserver"] = false in /usr/share/wireplumber/main.lua.d/50-alsa-config.lua
-systemctl --user restart pipewire pipewire-pulse.service
 
 sudo apt-get update && sudo apt-get upgrade
 
