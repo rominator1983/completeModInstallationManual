@@ -1,6 +1,6 @@
 # completeModInstallationManual
 
-This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu (developed with lunar lobster 23.04) including pipewire.
+This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu Studio (developed with 23.10).
 
 I wrote this down for others who would like to use MOD but cannot find a description on what has to be done and how things should work with each other. Basically this describes the setup of my notebook that I use for my guitar effects for jamming and recording guitar tracks. 
 
@@ -9,10 +9,11 @@ Special thanks to @falkTX for making this all even remotely possible.
 # Disclaimer
 
 As this manual is published under the MIT license I cannot be held liable for any damage on any of your hardware or body parts (especially your ears) that result from using this manual (or not following it). Start MOD only when the volume is set to 0%.
-~/mod/mod-plugin-builder
+
 THIS IS NOT A JOKE. When running MOD carelessly with a laptop sound card with a built-in microphone and speakers there can be really unpleasant/deafening feedback noises.
 
 # What is MOD on your Linux PC
+
 MOD is an [lv2](https://lv2plug.in/) host that allows you to connect multiple lv2 plugins (aka sound effects) in any order you like to modify your input signal (Guitar, vocals, saxophone or everything else). It is not limited to daisy chaining but lets you connect effects in parallel too (dual amping). This is all based on open source software and can be used by anyone for free.
 
 The [MOD dwarf](https://mod.audio/dwarf/) that you can buy here https://www.thomann.de/intl/mod_dwarf.htm does all of that in a small form factor and pretty box based on fast ARM processors and decent audio I/O equipment.
@@ -41,54 +42,39 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
 * JACK
 
-    The audio backend API/server that the MOD-host uses to connect lv2 plugins with each other. Pipewire implements the JACK protocol thus eliminating the need for a JACK server.
+    The audio backend API/server that the MOD-host uses to connect lv2 plugins with each other. Pipewire implements the JACK protocol thus eliminating the need for a JACK server greatly.
 
 # Base setup of operating system
 
-1. Install Ubuntu
+1. Install Ubuntu Studio
      1. Use "Install third-party software for graphics and Wi-Fi hardware"
      2. Use "Download and install support for additional media formats
-     3. After installing when asked for sending system information select not to send this, in order to not cause unneccessary network trafic at the worst possible time on stage with your MOD.
-     4. Consider setting your screen timeout to never in order to not have your screen go blank when jamming with your friends with MOD.
-     5. Take some time to think about how and when to apply software updates to your box, since - again - you don't want those to mess with you when you are live on stage with MOD.
-     6. In the sound settings set "Alert sounds" to "None".
+     3. Consider setting your screen timeout to never in order to not have your screen go blank when jamming with your friends with MOD.
+     4. Take some time to think about how and when to apply software updates to your box, since - again - you don't want those to mess with you when you are live on stage with MOD.
+     5. In "Ubuntu Studio Audio configuration" switch to pulseaudio
+     6. Restart PC
 
 2. Setup script (this takes very long!)
 
-       wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/setup -O setupMod
-       chmod 777 setupMod
-       ./setupMod
-
-3. Install Ubuntu studio and its components    
-    Then start the Ubuntu studio installer by pressing the windows key and searching for "studio" and install the following components
-    * linux-lowlatency
-    * ubuntustudio-lowlatency-settings
-    * ubuntustudio-performance-tweaks
-    * ubuntustudio-audio
-    
-    This will take some minutes. After that better restart the machine and do not just logout/login as the installer tells you.
-
-# Install/Build MOD               
-1. setup script
-
 This also installs some performance tweaks to the grub bootloader.
 
-        sudo apt-get install wget
         wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/setup -O setupMod
         chmod 777 setupMod
         ./setupMod
         
-2. Edit `~/mod/completeModInstallationManual/runMod` to set the buffer size and numbe of periods of jack. (256 and 3 in the following example)
+2. Edit `~/mod/completeModInstallationManual/runMod` to set the device, buffer size and numbe of periods of jack. (256 and 3 in the following example)
 
-    jackd -R -P 80 -d alsa -d hw:UR22,0 -r 48000 -p 256 -n 4 -X seq &
+   Use `cat /proc/asound/cards` to get the device name (the one in brackets) to use for the device name in the following statement.
+
+        jackd -R -P 80 -d alsa -d hw:UR22,0 -r 48000 -p 256 -n 4 -X seq &
 
 # Start Mod for the first time
 
 1. If you have multiple audio device, be sure to select the correct audio device via the Ubuntu settings
 2. Be sure to turn the volume on your main sound device to 0% in order to avoid feedback.
 
-    This is neccessary because MOD connects the default input to the default output per default. If you are sitting on a laptop this will result in instant unpleasant and ear damaging feedback! :-( You have been warned!
-    `wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%`
+    This is neccessary because MOD connects the default input to the default output per default. If you are sitting on a laptop with mic in and speakers this will result in instant unpleasant and ear damaging feedback! :-( You have been warned!
+    `pactl set-sink-volume @DEFAULT_SINK@ 0%`
 
 4. Run MOD
 
