@@ -48,6 +48,15 @@ mkdir ~/mod-workdir/user-files/SFZ\ Instruments
 mkdir ~/mod-workdir/user-files/Aida\ DSP\ Models
 mkdir ~/mod-workdir/user-files/NAM\ Models
 
+# this fails on ubutnu studio 23.10. check https://stackoverflow.com/questions/15182640/undefined-reference-to-jack-client-close-et-al
+# error:
+#usr/bin/ld: effects.c:(.text+0xa45e): undefined reference to `jack_set_property'
+#/usr/bin/ld: ./src/effects.o: in function `effects_cv_map':
+#effects.c:(.text+0xead6): undefined reference to `jack_get_property'
+#/usr/bin/ld: effects.c:(.text+0xebfe): undefined reference to `jack_get_property'
+#collect2: error: ld returned 1 exit status
+#make: *** [Makefile:125: mod-host.so] Error 1
+
 cd ~/mod/mod-host
 make
 sudo make install
