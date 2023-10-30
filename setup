@@ -28,8 +28,7 @@ sudo apt-get autoremove -y
 sudo sh -c 'echo "@audio          -       rtprio 99" >> /etc/security/limits.conf'
 sudo sh -c 'echo "@audio          -       memlock unlimited" >> /etc/security/limits.conf'
 sudo sh -c 'echo "@audio          -       nice -10" >> /etc/security/limits.conf'
-
-# TODO: put the following in /etc/default/rtirq: RTIRQ_HIGH_LIST="timer snd-hrtimer snd usb"
+sudo sh -c 'echo "RTIRQ_HIGH_LIST=\"timer snd-hrtimer snd usb\"" >> /etc/default/rtirq'
 
 sudo apt-get update && sudo apt-get upgrade
 
@@ -40,11 +39,6 @@ git clone --recurse-submodules https://github.com/moddevices/mod-host.git
 git clone --recurse-submodules https://github.com/moddevices/mod-ui.git
 git clone --recurse-submodules https://github.com/rominator1983/mod-plugin-builder.git
 git clone https://github.com/rominator1983/completeModInstallationManual.git
-
-git clone https://github.com/rominator1983/noClipDrive.lv2.git
-git clone https://github.com/rominator1983/justOneOctaveUp.lv2.git
-git clone https://github.com/rominator1983/rectifyingOctave.lv2.git
-git clone https://github.com/rominator1983/splineDrive.lv2.git
 
 mkdir ~/mod-workdir
 mkdir ~/mod-workdir/user-files
