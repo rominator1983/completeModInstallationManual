@@ -29,9 +29,7 @@ sudo sh -c 'echo "@audio          -       rtprio 99" >> /etc/security/limits.con
 sudo sh -c 'echo "@audio          -       memlock unlimited" >> /etc/security/limits.conf'
 sudo sh -c 'echo "@audio          -       nice -10" >> /etc/security/limits.conf'
 
-# TODO: put the following in /etc/default/rtirq:
-RTIRQ_HIGH_LIST="timer snd-hrtimer snd usb"
-
+# TODO: put the following in /etc/default/rtirq: RTIRQ_HIGH_LIST="timer snd-hrtimer snd usb"
 
 sudo apt-get update && sudo apt-get upgrade
 
@@ -42,6 +40,11 @@ git clone --recurse-submodules https://github.com/moddevices/mod-host.git
 git clone --recurse-submodules https://github.com/moddevices/mod-ui.git
 git clone --recurse-submodules https://github.com/rominator1983/mod-plugin-builder.git
 git clone https://github.com/rominator1983/completeModInstallationManual.git
+
+git clone https://github.com/rominator1983/noClipDrive.lv2.git
+git clone https://github.com/rominator1983/justOneOctaveUp.lv2.git
+git clone https://github.com/rominator1983/rectifyingOctave.lv2.git
+git clone https://github.com/rominator1983/splineDrive.lv2.git
 
 mkdir ~/mod-workdir
 mkdir ~/mod-workdir/user-files
@@ -58,15 +61,6 @@ mkdir ~/mod-workdir/user-files/SF2\ Instruments
 mkdir ~/mod-workdir/user-files/SFZ\ Instruments
 mkdir ~/mod-workdir/user-files/Aida\ DSP\ Models
 mkdir ~/mod-workdir/user-files/NAM\ Models
-
-# this fails on ubutnu studio 23.10. check https://stackoverflow.com/questions/15182640/undefined-reference-to-jack-client-close-et-al
-# error:
-#usr/bin/ld: effects.c:(.text+0xa45e): undefined reference to `jack_set_property'
-#/usr/bin/ld: ./src/effects.o: in function `effects_cv_map':
-#effects.c:(.text+0xead6): undefined reference to `jack_get_property'
-#/usr/bin/ld: effects.c:(.text+0xebfe): undefined reference to `jack_get_property'
-#collect2: error: ld returned 1 exit status
-#make: *** [Makefile:125: mod-host.so] Error 1
 
 cd ~/mod/mod-host
 make
@@ -112,3 +106,31 @@ sudo cp -r ~/mod-workdir/x86_64/plugins/* /usr/lib/lv2/
 
 # copy misplaced neural network definitions to user files directory
 cp /usr/lib/lv2/rt-neural-generic.lv2/models/deer\ ink\ studios/* ~/mod-workdir/user-files/Speaker\ Cabinets\ IRs
+
+cd ~/mod
+git clone https://github.com/rominator1983/noClipDrive.lv2.git
+git clone https://github.com/rominator1983/justOneOctaveUp.lv2.git
+git clone https://github.com/rominator1983/rectifyingOctave.lv2.git
+git clone https://github.com/rominator1983/splineDrive.lv2.git
+
+cd ~/mod/noClipDrive.lv2
+./waf configure
+./waf build
+sudo ./waf install
+
+cd ~/mod/justOneOctaveUp.lv2
+./waf configure
+./waf build
+sudo ./waf install
+
+cd ~/mod/rectifyingOctave.lv2
+./waf configure
+./waf build
+sudo ./waf install
+
+cd ~/mod/splineDrive.lv2
+./waf configure
+./waf build
+sudo ./waf install
+
+sudo cp -rf /usr/local/lib64/lv2/* /usr/lib/lv2/
