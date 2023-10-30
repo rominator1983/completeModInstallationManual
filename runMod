@@ -16,8 +16,7 @@ jackd -v -R -P 80 -d alsa -d hw:UR22,0 -r 48000 -p128 -n3 -X seq &
 
 sleep 2
 # JACK:
-#pactl load-module module-jack-sink
-#pactl load-module module-jack-source
+pactl load-module module-jack-sink
 
 # PW: 
 #pw-metadata -n settings 0 clock.force-rate 48000

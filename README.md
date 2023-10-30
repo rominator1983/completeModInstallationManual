@@ -50,9 +50,10 @@ This way however it is not possible (as far as I know) to use the MOD store to b
      1. Use "Install third-party software for graphics and Wi-Fi hardware"
      2. Use "Download and install support for additional media formats
      3. Consider setting your screen timeout to never in order to not have your screen go blank when jamming with your friends with MOD.
-     4. Take some time to think about how and when to apply software updates to your box, since - again - you don't want those to mess with you when you are live on stage with MOD.
-     5. In "Ubuntu Studio Audio configuration" switch to pulseaudio
-     6. Restart PC
+     4. Disable Bluetooth
+     5. Take some time to think about how and when to apply software updates to your box, since - again - you don't want those to mess with you when you are live on stage with MOD.
+     6. In "Ubuntu Studio Audio configuration" switch to pulseaudio
+     7. Restart PC
 
 2. Setup script (this takes very long!)
 
