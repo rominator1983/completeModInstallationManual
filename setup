@@ -24,10 +24,10 @@ sudo apt-get autoremove -y
 
 # TODO: as of https://automatthias.wordpress.com/2021/12/27/running-a-standalone-jack-daemon-after-migration-to-pipewire/
 # TODO: set ["alsa.reserver"] = false in /usr/share/wireplumber/main.lua.d/50-alsa-config.lua
-# TODO: set /etc/security/limits.conf:
-#   @audio          -       rtprio 99
-#   @audio          -       memlock unlimited
-#   @audio          -       nice -10
+
+sudo sh -c 'echo "@audio          -       rtprio 99" >> /etc/security/limits.conf'
+sudo sh -c 'echo "@audio          -       memlock unlimited" >> /etc/security/limits.conf'
+sudo sh -c 'echo "@audio          -       nice -10" >> /etc/security/limits.conf'
 
 sudo apt-get update && sudo apt-get upgrade
 
