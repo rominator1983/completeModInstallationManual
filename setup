@@ -30,7 +30,7 @@ sudo apt-get update && sudo apt-get upgrade
 cd ~
 mkdir mod
 cd mod
-git clone --recurse-submodules https://github.com/moddevices/mod-host.git
+git clone --recurse-submodules https://github.com/rominator1983/mod-host.git
 git clone --recurse-submodules https://github.com/moddevices/mod-ui.git
 git clone --recurse-submodules https://github.com/rominator1983/mod-plugin-builder.git
 git clone https://github.com/rominator1983/completeModInstallationManual.git
