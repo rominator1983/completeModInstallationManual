@@ -11,7 +11,7 @@ killall jackd
 sleep 2
 
 # JACK:
-jackd -v -R -P 80 -d alsa -d hw:UR22,0 -r 48000 -p128 -n3 -X seq &
+jackd -R -P 80 -d alsa -d hw:UR22,0 -r 48000 -p128 -n3 -X seq &
 #jackd -R -P 80 -d alsa -d hw:UR22mkII,0 -r 96000 -p 512 -n 3 -X seq &
 
 sleep 2
@@ -41,7 +41,7 @@ virtualenv modui-env
 source modui-env/bin/activate
 
 export MOD_DEV_ENVIRONMENT=0
-export MOD_USER_FILES_DIR=~/mod/user-files
+export MOD_USER_FILES_DIR=~/mod-workdir/user-files/
 python3 ./server.py &
 
 sleep 4
