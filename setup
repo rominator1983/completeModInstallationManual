@@ -56,6 +56,10 @@ mkdir ~/mod-workdir/user-files/SFZ\ Instruments
 mkdir ~/mod-workdir/user-files/Aida\ DSP\ Models
 mkdir ~/mod-workdir/user-files/NAM\ Models
 
+# legacy
+cd ~/mod
+ln -s -r ../mod-workdir/user-files/ user-files
+
 cd ~/mod/mod-host
 make
 sudo make install
