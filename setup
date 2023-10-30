@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo sh -c 'echo "GRUB_CMDLINE_LINUX_DEFAULT=\"\$GRUB_CMDLINE_LINUX_DEFAULT preempt=full nohz=off mitigations=off threadirqs usbcore.autosuspend=-1\"" > /etc/default/grub.d/perf.cfg'
+sudo sh -c 'echo "GRUB_CMDLINE_LINUX_DEFAULT=\"\$GRUB_CMDLINE_LINUX_DEFAULT preempt=full nohz=off mitigations=off usbcore.autosuspend=-1\"" > /etc/default/grub.d/perf.cfg'
 sudo update-grub
 
 sudo apt-get update && sudo apt-get upgrade
