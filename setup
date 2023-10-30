@@ -7,8 +7,8 @@ sudo apt-get update && sudo apt-get upgrade
 
 # see https://github.com/moddevices/mod-host, https://github.com/moddevices/mod-ui and https://github.com/rominator1983/mod-plugin-builder
 
-sudo apt-get install git libreadline-dev liblilv-dev lilv-utils libfftw3-dev libjack-jackd2-dev \
-    libjack-jackd2-dev virtualenv python3-pip python3-dev git build-essential libasound2-dev libjack-jackd2-dev \
+sudo apt-get install git libreadline-dev liblilv-dev lilv-utils libfftw3-dev libjack-dev \
+    virtualenv python3-pip python3-dev git build-essential libasound2-dev \
     liblilv-dev libjpeg-dev zlib1g-dev acl bc curl cvs git mercurial rsync subversion wget bison bzip2 flex \
     gawk gperf gzip help2man nano perl patch tar texinfo unzip automake binutils build-essential cpio libtool \
     libncurses-dev pkg-config python-is-python3 libtool-bin libmtdev-dev libsqlclient-dev libsqlitecpp-dev \
