@@ -89,6 +89,9 @@ cd ~/mod/mod-plugin-builder
 # This will take hours on ANY machine
 ./bootstrap.sh x86_64 > bootstrap.log 2>&1
 
+# needed until https://github.com/moddevices/mod-plugin-builder/issues/176 is fixed
+cp -rf ~/mod-workdir/x86_64/build/shiro-plugins-labs-60a678ca6abdb7fa10b0ac8dd87e0e41052abe78/dpf/ ~/mod-workdir/x86_64/build/shiro-plugins-60a678ca6abdb7fa10b0ac8dd87e0e41052abe78/
+
 # compile plugins. see https://github.com/moddevices/mod-plugin-builder
 cd ~/mod/mod-plugin-builder/plugins/package
 echo "#"'!'"/bin/bash" > ../../compileAllPlugins
