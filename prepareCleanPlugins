@@ -1,9 +1,0 @@
-#!/bin/bash
-cd ~/mod/mod-plugin-builder/plugins/package
-echo "#"'!'"/bin/bash" > ../../cleanAllPlugins
-for d in *; do
-  echo "echo Cleaning $d"  >> ../../cleanAllPlugins
-  echo "./build x86_64 $d-dirclean > clean$d.log 2>&1" >> ../../cleanAllPlugins
-done
-cd ~/mod/mod-plugin-builder
-chmod 777 cleanAllPlugins

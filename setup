@@ -78,6 +78,7 @@ virtualenv modui-env
 source modui-env/bin/activate
 pip install pipenv
 pip3 install -r requirements.txt
+pip3 install backports.ssl-match-hostname
 
 # this is also needed to run mod-ui later
 pip install pycryptodomex
