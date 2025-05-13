@@ -1,6 +1,6 @@
 # completeModInstallationManual
 
-This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu Studio (developed with 23.10).
+This repository describes how to get a complete [MOD](https://github.com/moddevices) environment up and running from scratch on a PC using the latest Ubuntu Studio (developed with 25.04).
 
 I wrote this down for others who would like to use MOD but cannot find a description on what has to be done and how things should work with each other. Basically this describes the setup of my notebook that I use for my guitar effects for jamming and recording guitar tracks. 
 
@@ -46,18 +46,18 @@ This way however it is not possible (as far as I know) to use the MOD store to b
 
 # Base setup of operating system
 
-1. Install Ubuntu Studio
+1. Install Ubuntu Studio 25.04
      1. Use "Install third-party software for graphics and Wi-Fi hardware"
      2. Use "Download and install support for additional media formats
      3. Consider setting your screen timeout to never in order to not have your screen go blank when jamming with your friends with MOD.
      4. Disable Bluetooth
      5. Take some time to think about how and when to apply software updates to your box, since - again - you don't want those to mess with you when you are live on stage with MOD.
-     6. In "Ubuntu Studio Audio configuration" switch to pulseaudio
+     6. ~~In "Ubuntu Studio Audio configuration" switch to pulseaudio~~
      7. Restart PC
 
 2. Setup script (this takes very long!)
 
-This also installs some performance tweaks to the grub bootloader.
+~~This also installs some performance tweaks to the grub bootloader.~~
 
         wget https://raw.githubusercontent.com/rominator1983/completeModInstallationManual/main/setup -O setupMod
         chmod 777 setupMod
