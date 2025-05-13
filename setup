@@ -1,7 +1,8 @@
 #!/bin/bash
 
-sudo sh -c 'echo "GRUB_CMDLINE_LINUX_DEFAULT=\"\$GRUB_CMDLINE_LINUX_DEFAULT preempt=full nohz=off mitigations=off usbcore.autosuspend=-1\"" > /etc/default/grub.d/perf.cfg'
-sudo update-grub
+# TODO: Do something else here
+#sudo sh -c 'echo "GRUB_CMDLINE_LINUX_DEFAULT=\"\$GRUB_CMDLINE_LINUX_DEFAULT preempt=full nohz=off mitigations=off usbcore.autosuspend=-1\"" > /etc/default/grub.d/perf.cfg'
+#sudo update-grub
 
 sudo apt-get update && sudo apt-get upgrade
 
@@ -18,7 +19,7 @@ sudo apt-get install git locales bash bash-completion libreadline-dev liblilv-de
     automake binutils build-essential cpio libtool libncurses-dev python-is-python3 \
     libtool-bin libmtdev-dev libsqlclient-dev libpulse-dev libfontconfig1-dev libxcursor-dev \
     libc++-dev glibc-source linux-libc-dev liblua5.1-0-dev meson mc lv2-dev libsndfile1-dev \
-    ncurses-dev libxinerama-dev libxrandr-dev qemu-user-static -y
+    ncurses-dev libxinerama-dev libxrandr-dev qemu-user-static lilv-utils sordi -y
 
 # for 23.10 and later
 sudo apt-get install libsqlitecpp-dev -y
@@ -28,10 +29,11 @@ sudo apt-get autoremove -y
 # TODO: PW: as of https://automatthias.wordpress.com/2021/12/27/running-a-standalone-jack-daemon-after-migration-to-pipewire/
 # TODO: PW: set ["alsa.reserver"] = false in /usr/share/wireplumber/main.lua.d/50-alsa-config.lua
 
-sudo sh -c 'echo "@audio          -       rtprio 99" >> /etc/security/limits.conf'
-sudo sh -c 'echo "@audio          -       memlock unlimited" >> /etc/security/limits.conf'
-sudo sh -c 'echo "@audio          -       nice -10" >> /etc/security/limits.conf'
-sudo sh -c 'echo "RTIRQ_HIGH_LIST=\"timer snd-hrtimer snd usb\"" >> /etc/default/rtirq'
+# TODO: Do something else here
+#sudo sh -c 'echo "@audio          -       rtprio 99" >> /etc/security/limits.conf'
+#sudo sh -c 'echo "@audio          -       memlock unlimited" >> /etc/security/limits.conf'
+#sudo sh -c 'echo "@audio          -       nice -10" >> /etc/security/limits.conf'
+#sudo sh -c 'echo "RTIRQ_HIGH_LIST=\"timer snd-hrtimer snd usb\"" >> /etc/default/rtirq'
 
 sudo apt-get update && sudo apt-get upgrade
 
