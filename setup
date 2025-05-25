@@ -24,6 +24,8 @@ sudo apt-get install git locales bash bash-completion libreadline-dev liblilv-de
 # for 23.10 and later
 sudo apt-get install libsqlitecpp-dev -y
 
+sudo apt install libboost-all-dev -y
+
 sudo apt-get autoremove -y
 
 # TODO: PW: as of https://automatthias.wordpress.com/2021/12/27/running-a-standalone-jack-daemon-after-migration-to-pipewire/
