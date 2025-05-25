@@ -20,7 +20,7 @@ sudo apt-get install git locales bash bash-completion libreadline-dev liblilv-de
     libtool-bin libmtdev-dev libsqlclient-dev libpulse-dev libfontconfig1-dev libxcursor-dev \
     libc++-dev glibc-source linux-libc-dev liblua5.1-0-dev meson mc lv2-dev libsndfile1-dev \
     ncurses-dev libxinerama-dev libxrandr-dev qemu-user-static lilv-utils sordi g++ \
-    autotools-dev libicu-dev libbz2-dev -y
+    autotools-dev libicu-dev libbz2-dev lingot -y
 
 # for 23.10 and later
 sudo apt-get install libsqlitecpp-dev -y
