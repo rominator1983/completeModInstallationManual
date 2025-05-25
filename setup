@@ -19,7 +19,8 @@ sudo apt-get install git locales bash bash-completion libreadline-dev liblilv-de
     automake binutils build-essential cpio libtool libncurses-dev python-is-python3 \
     libtool-bin libmtdev-dev libsqlclient-dev libpulse-dev libfontconfig1-dev libxcursor-dev \
     libc++-dev glibc-source linux-libc-dev liblua5.1-0-dev meson mc lv2-dev libsndfile1-dev \
-    ncurses-dev libxinerama-dev libxrandr-dev qemu-user-static lilv-utils sordi -y
+    ncurses-dev libxinerama-dev libxrandr-dev qemu-user-static lilv-utils sordi g++ \
+    autotools-dev libicu-dev libbz2-dev -y
 
 # for 23.10 and later
 sudo apt-get install libsqlitecpp-dev -y
